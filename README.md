@@ -13,12 +13,12 @@
 
 ## General info
 ### Team Members:
-- Chloe Veras
-- Deepa Vadakan
+- [Chloe Veras](https://github.com/cveras33)
+- [Deepa Vadakan](https://github.com/deepavadakan)
 - [Jennifer Dean](https://github.com/Jen-Dean)
-- Jessi Volosin
-- Kasey Lacerda
-- Osvaldo (Ozzie) Mauricio Moreno
+- [Jessi Volosin](https://github.com/jvolosin)
+- [Kasey Lacerda](https://github.com/KLacerda08)
+- [Osvaldo (Ozzie) Mauricio Moreno](https://github.com/sir-omoreno)
 
 ### Data Sources:
 - [PetFinder API](https://www.petfinder.com/developers/)
@@ -68,9 +68,9 @@ Inspired by Rutgers Data Visulization Bootcamp & Fluffy animals everywhere!
 
 ## Contact
 Created by:
-- Chloe Veras
-- Deepa Vadakan
+- [Chloe Veras](https://github.com/cveras33)
+- [Deepa Vadakan](https://github.com/deepavadakan)
 - [Jennifer Dean](https://github.com/Jen-Dean)
-- Jessi Volosin
-- Kasey Lacerda
-- Osvaldo (Ozzie) Mauricio Moreno
+- [Jessi Volosin](https://github.com/jvolosin)
+- [Kasey Lacerda](https://github.com/KLacerda08)
+- [Osvaldo (Ozzie) Mauricio Moreno](https://github.com/sir-omoreno)
