@@ -56,7 +56,7 @@
 `comming soon!`
 
 ## Features & Visulizations
-* USA Map of Current Adoption availabilites
+* USA Map of Current Adoption availabilites based on location, breed, etc. (tbd)
 * Data Visual Repository of the Different Amounts of Cat & Dog Breeds in the world
 * BONUS: Feature to help identify the possiblities of breed of your dog/ cat
 
