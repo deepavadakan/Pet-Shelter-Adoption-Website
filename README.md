@@ -22,8 +22,9 @@
 
 ### Data Sources:
 - [PetFinder API](https://www.petfinder.com/developers/)
+  - [PetFinder API Documentation(https://www.petfinder.com/developers/v2/docs/)
 - [Rescue Group API](https://rescuegroups.org/services/adoptable-pet-data-api/)
-- *note: we currently only have access to the PetFinder API, we are requesting access for the Rescue Groups.*
+  - [Rescue Group API Documentation](https://test1-api.rescuegroups.org/v5/public/docs)
 - [JavaScript Libraries](https://medium.com/javascript-in-plain-english/best-javascript-data-visualization-libraries-for-2020-15291919a176)
 
 ## Screenshots
