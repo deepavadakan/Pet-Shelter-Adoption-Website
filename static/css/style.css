@@ -1,0 +1,47 @@
+.top-bar {
+  position: relative;
+  height: 150px;
+  padding: 20px;
+  margin: 0;
+  background: black;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  font-size: xxx-large;
+  padding:20px;
+}
+
+/* 3 circles menu */
+.dashboard-menu {
+  justify-content: space-around; /* evenly space the images on the line */
+  padding:20px;
+}
+
+.dashboard-circles-box {
+  display: flex;
+  justify-content: center;
+  
+  vertical-align: middle;
+  text-align: center;
+}
+
+.dashboard-circle {
+  height: calc(0.2 * 100vmin); /* 64px at 320 and 256px at 1280 */
+  width : calc(0.2 * 100vmin); /* nice responsive sizing */
+
+  background-position: center;  /* center image in parent */
+  background-repeat: no-repeat; /* prevents repeat of image! */
+  background-size: cover;       /* stretch/shrink to fill */
+  background-image: url("../images/pet1.jpg");
+
+  border-radius: 50%;
+  opacity: 0.5;
+  
+}
+
+.dashboard-circle:hover {
+  opacity: 1.0;
+}
