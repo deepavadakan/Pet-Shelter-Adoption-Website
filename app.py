@@ -30,7 +30,11 @@ def breeds():
 
     return render_template("breeds.html")
 
+# route to find a pet 
+@app.route("/find-a-pet")
+def breeds():
 
+    return render_template("find-a-pet.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
