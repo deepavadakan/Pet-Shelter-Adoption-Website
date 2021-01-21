@@ -32,9 +32,15 @@ def breeds():
 
 # route to find a pet 
 @app.route("/find-a-pet")
-def breeds():
+def find-a-pet():
 
     return render_template("find-a-pet.html")
+
+# route to find a pet 
+@app.route("/graphs")
+def graphs():
+
+    return render_template("graphs.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
