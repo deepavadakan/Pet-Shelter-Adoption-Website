@@ -32,7 +32,7 @@ def breeds():
 
 # route to find a pet 
 @app.route("/find-a-pet")
-def find-a-pet():
+def find_a_pet():
 
     return render_template("find-a-pet.html")
 
