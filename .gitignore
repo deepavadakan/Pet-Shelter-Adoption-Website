@@ -131,3 +131,5 @@ dmypy.json
 .ipynb_checkpoints
 .python-version
 .DS_Store
+config.js
+config.py
