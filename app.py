@@ -36,6 +36,12 @@ def find_a_pet():
 
     return render_template("find-a-pet.html")
 
+# route to find organization s
+@app.route("/organizations")
+def organizations():
+
+    return render_template("organizations.html")
+
 # route to find a pet 
 @app.route("/graphs")
 def graphs():
