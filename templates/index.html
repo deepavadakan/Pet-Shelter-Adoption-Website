@@ -12,8 +12,9 @@
 
 <body>
   <div class="wrapper">
-    <div class="top-bar jumbotron text-center">
-      <h1>Rescue Angels</h1>
+    <canvas id="canvas-topbar"><h1>Rescue Angels</h1></canvas>
+    <div>
+      
     </div>
 
     <div class="row header-row">
@@ -23,24 +24,27 @@
     <div class="dashboard-menu">
       <div class="row">
         <div class="col-md-4 col-sm-4 dashboard-circles-box">
-          <a href=#>
+          
+          <a href="/breeds">
+            
             <div class="dashboard-circle">
-              <p class="dashboard-menu-item">Breeds</p>
+              <p id="dashboard-menu-item1">Breeds</p>
             </div>
           </a>
+       
         </div>
 
         <div class="col-md-4 col-sm-4 dashboard-circles-box">
-          <a href=#>
+          <a href="/find-a-pet">
             <div class="dashboard-circle">
-              <p class="dashboard-menu-item">Find a Pet</p>
+              <p id="dashboard-menu-item2">Find a Pet</p>
             </div>
           </a>
         </div>
         <div class="col-md-4 col-sm-4 dashboard-circles-box">
-          <a href=#>
+          <a href="/graphs">
             <div class="dashboard-circle">
-              <p class="dashboard-menu-item">Data</p>
+              <p id="dashboard-menu-item3">Graphs</p>
             </div>
           </a>
         </div>
@@ -50,8 +54,7 @@
       <p>Rescue Angels&copy;2021</p>
     </div>
   </div>
-  <script src="https://d3js.org/d3.v6.min.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="../static/js/granim.js"></script>
   <script src="../static/js/main.js"></script>
 </body>
 

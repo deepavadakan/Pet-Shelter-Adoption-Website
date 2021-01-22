@@ -1,3 +1,10 @@
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 150px;
+}
+
 .top-bar {
   position: relative;
   height: 150px;
@@ -26,11 +33,13 @@
   
   vertical-align: middle;
   text-align: center;
+  align-items: center;
 }
 
 .dashboard-circle {
   height: calc(0.2 * 100vmin); /* 64px at 320 and 256px at 1280 */
   width : calc(0.2 * 100vmin); /* nice responsive sizing */
+  
 
   background-position: center;  /* center image in parent */
   background-repeat: no-repeat; /* prevents repeat of image! */
@@ -38,10 +47,39 @@
   background-image: url("../images/pet1.jpg");
 
   border-radius: 50%;
-  opacity: 0.5;
+  opacity: 0.4;
   
 }
 
 .dashboard-circle:hover {
-  opacity: 1.0;
+  opacity: 0.8;
+}
+
+.dashboard-circles-box a {
+  text-decoration: none;
+}
+
+#dashboard-menu-item1 {
+  padding-top: 45px;
+  padding-bottom: 45px;
+  font-size: xx-large;
+  color: white;
+  text-decoration: none;
+  opacity: 1;
+}
+#dashboard-menu-item2 {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  font-size: xx-large;
+  color: white;
+  text-decoration: none;
+  opacity: 1;
+}
+#dashboard-menu-item3 {
+  padding-top: 45px;
+  padding-bottom: 45px;
+  font-size: xx-large;
+  color: white;
+  text-decoration: none;
+  opacity: 1;
 }
