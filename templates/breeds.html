@@ -15,12 +15,36 @@
     <div class="top-bar jumbotron text-center">
       <h1>Rescue Angels</h1>
     </div>
-
-    
-    <div id="footer">
-      <p>Rescue Angels&copy;2021</p>
+    <!-- Dog and Cat options-->
+    <div class="row breeds-row">
+      <div>Choose Pet Type
+        <select id="pet-type" onchange="fillDropDown(this.value)">
+          <option value="dogs">Dogs</option>
+          <option value="cats">Cats</option>
+        </select>
+      </div>
+      <div class="row breeds-row">
+      <div>Find Breeds by
+        <select id="characteristics" onchange="plotSunburst(this.value)">
+        </select>
+      </div>
+    </div>
+    <div class="row breeds-row">
+      <div class="col-md-6 col-sm-6">
+        <div id="sunburst"></div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div><tbody></tbody></div>
+      </div>
     </div>
   </div>
+
+  <div id="footer">
+    <p>Rescue Angels&copy;2021</p>
+  </div>
+  </div>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="../static/js/breeds.js"></script>
 </body>
 

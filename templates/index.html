@@ -12,39 +12,57 @@
 
 <body>
   <div class="wrapper">
-    <canvas id="canvas-topbar"><h1>Rescue Angels</h1></canvas>
-    <div>
-      
-    </div>
+    <!-- LOGO -->
+    <canvas id="canvas-topbar">
+      <h1>Rescue Angels</h1>
+    </canvas>
 
-    <div class="row header-row">
-      Find your new Best Friend!
-    </div>
-
-    <div class="dashboard-menu">
+    <!-- Dashboard menu -->
+    <div class="grid-container">
+      <!-- Pets image -->
+      <div class="left-img">
+        <img id="pets-logo" src="../static/images/pets.png">
+      </div>
+      <!-- Breeds -->
       <div class="row">
-        <div class="col-md-4 col-sm-4 dashboard-circles-box">
-          
+        <div class="col-md-12 col-sm-12 dashboard-circles-box">
           <a href="/breeds">
-            
-            <div class="dashboard-circle">
+            <div id="dashboard-circle1">
               <p id="dashboard-menu-item1">Breeds</p>
             </div>
           </a>
-       
         </div>
-
-        <div class="col-md-4 col-sm-4 dashboard-circles-box">
+      </div>
+      <!-- Find a Pet -->
+      <div class="row">
+        <div class="col-md-3 col-sm-3 ">
+        </div>
+        <div class="col-md-9 col-sm-9 dashboard-circles-box">
           <a href="/find-a-pet">
-            <div class="dashboard-circle">
+            <div id="dashboard-circle2">
               <p id="dashboard-menu-item2">Find a Pet</p>
             </div>
           </a>
         </div>
-        <div class="col-md-4 col-sm-4 dashboard-circles-box">
+      </div>
+      <!-- Organization -->
+      <div class="row">
+        <div class="col-md-3 col-sm-3 ">
+        </div>
+        <div class="col-md-9 col-sm-9 dashboard-circles-box">
+          <a href="/organizations">
+            <div id="dashboard-circle3">
+              <p id="dashboard-menu-item3">Organizations</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- Graphs -->
+      <div class="row">
+        <div class="col-md-12 col-sm-12 dashboard-circles-box">
           <a href="/graphs">
-            <div class="dashboard-circle">
-              <p id="dashboard-menu-item3">Graphs</p>
+            <div id="dashboard-circle4">
+              <p id="dashboard-menu-item4">Graphs</p>
             </div>
           </a>
         </div>
