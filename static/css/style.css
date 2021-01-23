@@ -165,5 +165,22 @@ canvas {
 
 .breeds-row {
   text-align: center;
-  padding: 20px;
+  padding: 10px;
+}
+
+td {
+  text-align: left;
+  padding: 5px;
+}
+
+tr td:first-child{
+  min-width: 40%;
+}
+
+.tdHeader {
+  font-weight: bold;
+}
+.breed_name {
+  font-size: x-large;
+  margin: 0;
 }
