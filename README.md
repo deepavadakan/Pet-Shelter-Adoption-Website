@@ -20,7 +20,7 @@
 - [Kasey Lacerda](https://github.com/KLacerda08)
 - [Osvaldo (Ozzie) Mauricio Moreno](https://github.com/sir-omoreno)
 
-### API Data Sources:
+### API & Data Sources:
 - [PetFinder API](https://www.petfinder.com/developers/)
   - [PetFinder API Documentation](https://www.petfinder.com/developers/v2/docs/)
 - [Rescue Group API](https://rescuegroups.org/services/adoptable-pet-data-api/)
@@ -28,7 +28,7 @@
 - [JavaScript Libraries](https://medium.com/javascript-in-plain-english/best-javascript-data-visualization-libraries-for-2020-15291919a176)
 
 ### Web Scraping Data Sources:
-- [PetFinder}(https://www.petfinder.com/)
+- [PetFinder](https://www.petfinder.com/)
 - [American Kennel Club](https://www.akc.org/)
 - [The Cat Fancier's Association](https://cfa.org/)
 - [Purina](https://www.purina.com/)
