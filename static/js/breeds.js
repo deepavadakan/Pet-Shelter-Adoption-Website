@@ -129,7 +129,7 @@ function plotSunburst(selection) {
                     break;
                 case "Playfullness":
                     ids = [1, 2, 3, 4, 5];
-                    labels = ["Leave me alone!", "Low", "Moderate", "High", "Extreme"];
+                    labels = ["Leave me alone!", "I’d Rather not…", " Only when<br>I feel like it", "I’m always<br>up to play!", "Life is nothing<br>but games"];
                     parents = ["", "", "", "", ""];
                     catData.forEach(data => {
                         ids.push(data.breed_name);
@@ -201,16 +201,137 @@ function displayDogBreedInfo(breedData, selBreed) {
     console.log(selBreedData);
 
     // display the data requested
-    tbody.append("tr").append("td").text(selBreedData.breed_name);
-    tbody.append("tr").append("td").text(selBreedData.image);
-    tbody.append("tr").append("td").text(selBreedData.description);
-    tbody.append("tr").append("td").text(selBreedData.akc_rank);
-    tbody.append("tr").append("td").text(selBreedData.life_expectancy);
-    tbody.append("tr").append("td").text(selBreedData.group);
-    tbody.append("tr").append("td").text(selBreedData.brusging_scale);
-
-
+    // breed name
+    tbody.append("tr").append("td")
+        .attr("colspan", 2)
+        .classed("breed_name", true)
+        .text(selBreedData.breed_name)
+        .append("hr");
+    // image
+    tbody.append("tr").append("td")
+        .attr("colspan", 2)
+        .append("img").attr("src", selBreedData.image)
+        .attr('width', "50%");
+    // description
+    tbody.append("tr").append("td")
+        .attr("colspan", 2)
+        .text(selBreedData.description);
+    // temperment
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Temperment: ");
+    tr.append("td").text(selBreedData.temperment);
+    // rank
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Rank: ");
+    tr.append("td").text(selBreedData.akc_rank);
+    // life expectancy
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Life Expectancy: ");
+    tr.append("td").text(selBreedData.life_expectancy);
+    // group
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Group: ");
+    tr.append("td").text(selBreedData.group);
+    // height
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Height: ");
+    tr.append("td").text(selBreedData.height);
+    // weight
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Weight: ");
+    tr.append("td").text(selBreedData.weight);
+    // color options
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Color options: ");
+    tr.append("td").text(selBreedData.color_options);
+    //brushing scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Brushing: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 100)
+        .attr("value", selBreedData.color_options);
 }
 
 function displayCatBreedInfo(breedData, selBreed) {
+    console.log(breedData);
+
+    // find the tbody element
+    var tbody = d3.select("tbody");
+    console.log(tbody);
+
+    // first clear the table of existing data
+    tbody.html("");
+
+    var filteredData = breedData.filter(data => data.breed_name === selBreed);
+    var selBreedData = filteredData[0];
+
+    console.log(selBreedData);
+
+    // display the data requested
+    // breed name
+    tbody.append("tr").append("td")
+        .attr("colspan", 2)
+        .classed("breed_name", true)
+        .text(selBreedData.breed_name)
+        .append("hr");
+    // image
+    tbody.append("tr").append("td")
+        .attr("colspan", 2)
+        .append("img").attr("src", selBreedData.image)
+        .attr('width', "50%");
+    // description
+    tbody.append("tr").append("td")
+        .attr("colspan", 2)
+        .text(selBreedData.description);
+    // personality
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Personality: ");
+    tr.append("td").text(selBreedData.personality);
+    // coat length
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Coat Length: ");
+    tr.append("td").text(selBreedData.coat_length);
+    // life expectancy
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Life Expectancy: ");
+    tr.append("td").text(selBreedData.life_expectancy);
+    // weight
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Weight: ");
+    tr.append("td").text(selBreedData.weight);
+    // color options
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Color options: ");
+    tr.append("td").text(selBreedData.color_options);
+    //tbody.append("tr").append("td").text(selBreedData.color_options);
 }
