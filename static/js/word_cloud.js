@@ -1,6 +1,8 @@
 var d3 = require("d3"),
     cloud = require("../");
 
+console.log(d3)
+
 var layout = cloud()
     .size([500, 500])
     .words([
@@ -13,6 +15,7 @@ var layout = cloud()
     .font("Impact")
     .fontSize(function(d) { return d.size; })
     .on("end", draw);
+console.log(layout)
 
 layout.start();
 
