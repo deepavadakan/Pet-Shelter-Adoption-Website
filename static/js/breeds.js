@@ -269,9 +269,64 @@ function displayDogBreedInfo(breedData, selBreed) {
         .attr("type", "range")
         .attr("min", 1)
         .attr("max", 100)
-        .attr("value", selBreedData.color_options);
+        .attr("value", selBreedData.brushing_scale.replace("%", ""))
+        .attr("disabled", true);
+    //shedding scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Shedding: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 100)
+        .attr("value", selBreedData.shedding_scale.replace("%", ""))
+        .attr("disabled", true);
+    //energy scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Energy: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 100)
+        .attr("value", selBreedData.energy_scale.replace("%", ""))
+        .attr("disabled", true);
+    //trainability scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Trainability: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 100)
+        .attr("value", selBreedData.trainability_scale.replace("%", ""))
+        .attr("disabled", true);
+    //temperment scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Temperment: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 100)
+        .attr("value", selBreedData.temperment_scale.replace("%", ""))
+        .attr("disabled", true);
+    
 }
 
+// function to display cat breed information
 function displayCatBreedInfo(breedData, selBreed) {
     console.log(breedData);
 
@@ -333,5 +388,160 @@ function displayCatBreedInfo(breedData, selBreed) {
         .classed("tdHeader", true)
         .text("Color options: ");
     tr.append("td").text(selBreedData.color_options);
-    //tbody.append("tr").append("td").text(selBreedData.color_options);
+    //playfullness scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Playfullness: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 5)
+        .attr("value", selBreedData.playfullness)
+        .attr("disabled", true);
+    //activity scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Activity: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 5)
+        .attr("value", selBreedData.activity)
+        .attr("disabled", true);
+    //friendliness to other pets scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Friendliness to other pets: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 5)
+        .attr("value", selBreedData.friendliness_others)
+        .attr("disabled", true);
+    //friendliness to children scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Friendliness to children: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 5)
+        .attr("value", selBreedData.friendliness_children)
+        .attr("disabled", true);
+    //grooming scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Grooming: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 5)
+        .attr("value", selBreedData.grooming)
+        .attr("disabled", true);
+    //vocality scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Vocality: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 5)
+        .attr("value", selBreedData.vocality)
+        .attr("disabled", true);
+    //attention scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Attention: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 5)
+        .attr("value", selBreedData.attention)
+        .attr("disabled", true);
+    //affection scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Affection: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 5)
+        .attr("value", selBreedData.affection)
+        .attr("disabled", true);
+    //docility scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Docility: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 5)
+        .attr("value", selBreedData.docility)
+        .attr("disabled", true);
+    //intelligence scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Intelligence: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 5)
+        .attr("value", selBreedData.intelligence)
+        .attr("disabled", true);
+    //independence scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Independence: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 5)
+        .attr("value", selBreedData.independence)
+        .attr("disabled", true);
+    //hardiness scale
+    var tr = tbody.append("tr");
+    tr.append("td")
+        .classed("tdHeader", true)
+        .text("Hardiness: ");
+    tr.append("td")
+        .append("input")
+        .classed("slider", true)
+        .attr("type", "range")
+        .attr("min", 1)
+        .attr("max", 5)
+        .attr("value", selBreedData.hardiness)
+        .attr("disabled", true);
 }
