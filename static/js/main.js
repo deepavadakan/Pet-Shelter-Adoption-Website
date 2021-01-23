@@ -1,3 +1,4 @@
+
 var firstGranim = new Granim({
     element: "#canvas-topbar",
     name: "canvas-topbar-gradient",
@@ -6,8 +7,8 @@ var firstGranim = new Granim({
     opacity: [1, 1],
     isPausedWhenNotInView: true,
     image : {
-          source: 'static/images/logo1.png',
-          stretchMode: ["none", "none"],
+          source: 'static/images/logo.png',
+          stretchMode: ["stretch", "none"],
           blendingMode: 'overlay'
     },
     states: {
@@ -25,5 +26,3 @@ var firstGranim = new Granim({
       }
     }
   });
-
-  
