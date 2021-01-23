@@ -57,8 +57,8 @@ function plotSunburst(selection) {
                 case "Weight":
                     ids = ["featherweight", "lightweight", "middleweight", "heavyweight", "super heavyweight"];
                     labels = ["featherweight", "lightweight", "middleweight", "heavyweight", "super heavyweight"];
-                    dogData = ["", "", "", "", ""];
-                    webAPIdata.forEach(data => {
+                    parents = ["", "", "", "", ""];
+                    dogData.forEach(data => {
                         ids.push(data.breed_name);
                         labels.push(data.breed_name);
                         parents.push(data.weight_group);
@@ -129,7 +129,7 @@ function plotSunburst(selection) {
                     break;
                 case "Playfullness":
                     ids = [1, 2, 3, 4, 5];
-                    labels = [1, 2, 3, 4, 5];
+                    labels = ["Leave me alone!", "Low", "Moderate", "High", "Extreme"];
                     parents = ["", "", "", "", ""];
                     catData.forEach(data => {
                         ids.push(data.breed_name);
