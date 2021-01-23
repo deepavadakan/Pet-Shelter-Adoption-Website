@@ -167,3 +167,25 @@ canvas {
   text-align: center;
   padding: 20px;
 }
+
+.nav-link {
+  color: black;
+  text-decoration-color: black;
+
+}
+
+.navbar {
+  padding: 0px;
+  border-bottom: 2px solid navy;
+  margin-bottom: 20px;
+}
+.navbar-brand {
+  color: white    !important; 
+  background-color: navy;
+  color-adjust: white;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 25px;
+  font-weight: bolder;
+}
