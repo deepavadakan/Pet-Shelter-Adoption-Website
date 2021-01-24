@@ -133,12 +133,12 @@ tr td:first-child{
   font-size: x-large;
   margin: 0;
 }
-#scales {
+#breedScales {
   display: flex;
   justify-content: left;
 
 }
-.bar {
+.scalesBar {
   fill: orange;
   border-radius: 25px;
 }
