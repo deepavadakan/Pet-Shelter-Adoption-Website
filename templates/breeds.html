@@ -12,43 +12,43 @@
 
 <body>
 
-            <!-- NAVBAR LIST (FULL WIDTH)-->
+  <!-- NAVBAR LIST (FULL WIDTH)-->
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-              <!-- NAVBAR TITLE -->
-             <a class="navbar-brand" >Rescue Angels</a>
+    <!-- NAVBAR TITLE -->
+    <a class="navbar-brand">Rescue Angels</a>
 
-            <ul class="nav nav-pills nav-fill justify-content-end">
-            
-              <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/find-a-pet">Find a Pet</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/breeds">Breeds</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/organizations">Organizations</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/graphs">Graphs</a>
-              </li>
-            </ul>
-          </nav>
-          <!-- NAVBAR END -->
+    <ul class="nav nav-pills nav-fill justify-content-end">
 
-    <!-- Dog and Cat options-->
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/find-a-pet">Find a Pet</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/breeds">Breeds</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/organizations">Organizations</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/graphs">Graphs</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- NAVBAR END -->
+
+  <!-- Dog and Cat options-->
+  <div class="row breeds-row">
+    <div>Choose Pet Type
+      <select id="pet-type" onchange="fillDropDown(this.value)">
+        <option value="dogs">Dogs</option>
+        <option value="cats">Cats</option>
+      </select>
+    </div>
     <div class="row breeds-row">
-      <div>Choose Pet Type
-        <select id="pet-type" onchange="fillDropDown(this.value)">
-          <option value="dogs">Dogs</option>
-          <option value="cats">Cats</option>
-        </select>
-      </div>
-      <div class="row breeds-row">
       <div>Find Breeds by
         <select id="characteristics" onchange="plotSunburst(this.value)">
         </select>
@@ -59,7 +59,12 @@
         <div id="sunburst"></div>
       </div>
       <div class="col-md-6 col-sm-6">
-        <div><table><tbody></tbody></table></div>
+        <div>
+          <table>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div id="scales"></div>
       </div>
     </div>
   </div>
