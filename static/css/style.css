@@ -41,7 +41,7 @@ canvas {
   text-align: center;
 }
 
-#dashboard-circle1 {
+#dashboard-circle1, #dashboard-circle2, #dashboard-circle3, #dashboard-circle4 {
   height: calc(0.2 * 100vmin); /* 64px at 320 and 256px at 1280 */
   width : calc(0.2 * 100vmin); /* nice responsive sizing */
   
@@ -49,68 +49,26 @@ canvas {
   background-position: center;  /* center image in parent */
   background-repeat: no-repeat; /* prevents repeat of image! */
   background-size: cover;       /* stretch/shrink to fill */
-  background-image: url("../images/pet1.jpg");
-
+  
   border-radius: 50%;
   opacity: 0.4;
-  
 }
-#dashboard-circle1 {
-  height: calc(0.2 * 100vmin); /* 64px at 320 and 256px at 1280 */
-  width : calc(0.2 * 100vmin); /* nice responsive sizing */
-  
 
-  background-position: center;  /* center image in parent */
-  background-repeat: no-repeat; /* prevents repeat of image! */
-  background-size: cover;       /* stretch/shrink to fill */
+#dashboard-circle1 {
   background-image: url("../images/pet1.png");
 
-  border-radius: 50%;
-  opacity: 0.4;
-  
 }
 
 #dashboard-circle2 {
-  height: calc(0.2 * 100vmin); /* 64px at 320 and 256px at 1280 */
-  width : calc(0.2 * 100vmin); /* nice responsive sizing */
-  
-
-  background-position: center;  /* center image in parent */
-  background-repeat: no-repeat; /* prevents repeat of image! */
-  background-size: cover;       /* stretch/shrink to fill */
   background-image: url("../images/pet2.png");
 
-  border-radius: 50%;
-  opacity: 0.4;
-  
 }
 #dashboard-circle3 {
-  height: calc(0.2 * 100vmin); /* 64px at 320 and 256px at 1280 */
-  width : calc(0.2 * 100vmin); /* nice responsive sizing */
-  
-
-  background-position: center;  /* center image in parent */
-  background-repeat: no-repeat; /* prevents repeat of image! */
-  background-size: cover;       /* stretch/shrink to fill */
   background-image: url("../images/pet3.png");
 
-  border-radius: 50%;
-  opacity: 0.4;
-  
 }
 #dashboard-circle4 {
-  height: calc(0.2 * 100vmin); /* 64px at 320 and 256px at 1280 */
-  width : calc(0.2 * 100vmin); /* nice responsive sizing */
-  
-
-  background-position: center;  /* center image in parent */
-  background-repeat: no-repeat; /* prevents repeat of image! */
-  background-size: cover;       /* stretch/shrink to fill */
   background-image: url("../images/graphs.png");
-
-  border-radius: 50%;
-  opacity: 0.4;
-  
 }
 
 #dashboard-circle1:hover {
@@ -133,7 +91,7 @@ canvas {
   text-decoration: none;
 }
 
-#dashboard-menu-item1 {
+#dashboard-menu-item1, #dashboard-menu-item2, #dashboard-menu-item4 {
   padding-top: 55px;
   font-size: xx-large;
   color: black;
@@ -141,23 +99,10 @@ canvas {
   opacity: 1;
   margin: 0;
 }
-#dashboard-menu-item2 {
-  padding-top: 55px;
-  font-size: xx-large;
-  color: black;
-  text-decoration: none;
-  opacity: 1;
-}
+
 #dashboard-menu-item3 {
   padding-top: 60px;
   font-size: x-large;
-  color: black;
-  text-decoration: none;
-  opacity: 1;
-}
-#dashboard-menu-item4 {
-  padding-top: 55px;
-  font-size: xx-large;
   color: black;
   text-decoration: none;
   opacity: 1;
@@ -183,4 +128,17 @@ tr td:first-child{
 .breed_name {
   font-size: x-large;
   margin: 0;
+}
+#scales {
+  display: flex;
+  justify-content: left;
+
+}
+.bar {
+  fill: orange;
+  border-radius: 25px;
+}
+
+.barBackgrd {
+  fill: grey;
 }
