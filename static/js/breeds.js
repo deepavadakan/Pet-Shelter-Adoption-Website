@@ -1,9 +1,7 @@
 // Select the dropdowns for pet type and characteristics
 var dropDownCharacteristics = d3.select('#characteristics');
 
-console.log(dropDownCharacteristics);
-
-// pet characteristics lists for dropdown menu
+// pet characteristics lists for dropdown men
 var dogCharacteristics = ["Height", "Weight", "Group"];
 var catCharacteristics = ["Weight", "Coat Length", "Playfullness"];
 
@@ -99,10 +97,9 @@ function plotSunburst(selection) {
                 .then(gd => {
                     gd.on('plotly_sunburstclick', function (selBreedData) {
                         console.log(selBreedData.nextLevel);
+                        console.log(selBreedData);
                         if (!(selBreedData.nextLevel)) {
                             breedName = selBreedData.points[0].label;
-                            console.log(breedName);
-                            console.log(dogData);
                             displayDogBreedInfo(dogData, breedName)
                         }
                     })
@@ -174,8 +171,6 @@ function plotSunburst(selection) {
                         console.log(selBreedData.nextLevel);
                         if (!(selBreedData.nextLevel)) {
                             breedName = selBreedData.points[0].label;
-                            console.log(breedName);
-                            console.log(catData);
                             displayCatBreedInfo(catData, breedName)
                         }
                     })
@@ -190,8 +185,6 @@ function displayDogBreedInfo(breedData, selBreed) {
 
     // find the tbody element
     var tbody = d3.select("tbody");
-    console.log(tbody);
-
     // first clear the table of existing data
     tbody.html("");
 
@@ -227,7 +220,7 @@ function displayDogBreedInfo(breedData, selBreed) {
     tr.append("td")
         .classed("tdHeader", true)
         .text("Rank: ");
-    tr.append("td").text(selBreedData.akc_rank);
+    tr.append("td").text(selBreedData.akc_rank.replace("Ranks ", ""));
     // life expectancy
     var tr = tbody.append("tr");
     tr.append("td")
@@ -254,85 +247,152 @@ function displayDogBreedInfo(breedData, selBreed) {
     tr.append("td").text(selBreedData.weight);
     // color options
     var tr = tbody.append("tr");
+    var colOptions = selBreedData.color_options.replace("[", "");
+    colOptions = colOptions.replace("]", "");
     tr.append("td")
         .classed("tdHeader", true)
         .text("Color options: ");
-    tr.append("td").text(selBreedData.color_options);
-    //brushing scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Brushing: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 100)
-        .attr("value", selBreedData.brushing_scale.replace("%", ""))
-        .attr("disabled", true);
-    //shedding scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Shedding: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 100)
-        .attr("value", selBreedData.shedding_scale.replace("%", ""))
-        .attr("disabled", true);
-    //energy scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Energy: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 100)
-        .attr("value", selBreedData.energy_scale.replace("%", ""))
-        .attr("disabled", true);
-    //trainability scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Trainability: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 100)
-        .attr("value", selBreedData.trainability_scale.replace("%", ""))
-        .attr("disabled", true);
-    //temperment scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Temperment: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 100)
-        .attr("value", selBreedData.temperment_scale.replace("%", ""))
-        .attr("disabled", true);
-    
+    tr.append("td").text(colOptions);
+    // // scale legend
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Scale: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 100)
+    //     .attr("value", selBreedData.brushing_scale.replace("%", ""))
+    //     .attr("disabled", true);
+    // //brushing scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Brushing: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 100)
+    //     .attr("value", selBreedData.brushing_scale.replace("%", ""))
+    //     .attr("disabled", true);
+    // //shedding scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Shedding: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 100)
+    //     .attr("value", selBreedData.shedding_scale.replace("%", ""))
+    //     .attr("disabled", true);
+    // //energy scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Energy: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 100)
+    //     .attr("value", selBreedData.energy_scale.replace("%", ""))
+    //     .attr("disabled", true);
+    // //trainability scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Trainability: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 100)
+    //     .attr("value", selBreedData.trainability_scale.replace("%", ""))
+    //     .attr("disabled", true);
+    // //temperment scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Temperment: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 100)
+    //     .attr("value", selBreedData.temperment_scale.replace("%", ""))
+    //     .attr("disabled", true);
+
+    var svgHeight = 600;
+    var svgWidth = 500;
+
+    var chartMargin = {
+        top: 30,
+        left: 5
+    };
+
+    var svg = d3.select("#scales")
+        .html("")
+        .append("svg")
+        .attr("height", svgHeight)
+        .attr("width", svgWidth);
+
+    var chartGroup = svg.append("g")
+        .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
+
+    var breedScales = [{ "Type": "Brushing", "Scale": parseInt(selBreedData.brushing_scale.replace("%", "")) },
+    { "Type": "Shedding", "Scale": parseInt(selBreedData.shedding_scale.replace("%", "")) },
+    { "Type": "Energy", "Scale": parseInt(selBreedData.energy_scale.replace("%", "")) },
+    { "Type": "Trainability", "Scale": parseInt(selBreedData.trainability_scale.replace("%", "")) },
+    { "Type": "Temperment", "Scale": parseInt(selBreedData.temperment_scale.replace("%", "")) }];
+
+    var barGroup = chartGroup.selectAll("rect")
+        .data(breedScales)
+        .enter()
+        .append("g");
+
+    barGroup.append("rect")
+        .classed("bar", true)
+        .attr("width", function (d) {
+            return d.Scale * 5;
+        })
+        .attr("height", 20)
+        .attr("x", 0)
+        .attr("y", function (d, i) {
+            return i * 60;
+        });
+
+    barGroup.append("text")
+        .attr("dx", 0)
+        .attr("dy", function (d, i) {
+            return (i * 60) - 10;
+        })
+        .text(function (d) {
+            if (isNaN(d.Scale)) {
+                return d.Type + ": unknown";
+            }
+            else {
+                return d.Type + ": " + d.Scale + "%";
+            }
+
+        });
+
 }
 
 // function to display cat breed information
 function displayCatBreedInfo(breedData, selBreed) {
-    console.log(breedData);
 
     // find the tbody element
     var tbody = d3.select("tbody");
-    console.log(tbody);
 
     // first clear the table of existing data
     tbody.html("");
@@ -384,164 +444,227 @@ function displayCatBreedInfo(breedData, selBreed) {
     tr.append("td").text(selBreedData.weight);
     // color options
     var tr = tbody.append("tr");
+    var colOptions = selBreedData.color_options.replace("[", "");
+    colOptions = colOptions.replace("]", "");
     tr.append("td")
         .classed("tdHeader", true)
         .text("Color options: ");
-    tr.append("td").text(selBreedData.color_options);
-    //playfullness scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Playfullness: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 5)
-        .attr("value", selBreedData.playfullness)
-        .attr("disabled", true);
-    //activity scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Activity: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 5)
-        .attr("value", selBreedData.activity)
-        .attr("disabled", true);
-    //friendliness to other pets scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Friendliness to other pets: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 5)
-        .attr("value", selBreedData.friendliness_others)
-        .attr("disabled", true);
-    //friendliness to children scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Friendliness to children: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 5)
-        .attr("value", selBreedData.friendliness_children)
-        .attr("disabled", true);
-    //grooming scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Grooming: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 5)
-        .attr("value", selBreedData.grooming)
-        .attr("disabled", true);
-    //vocality scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Vocality: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 5)
-        .attr("value", selBreedData.vocality)
-        .attr("disabled", true);
-    //attention scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Attention: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 5)
-        .attr("value", selBreedData.attention)
-        .attr("disabled", true);
-    //affection scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Affection: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 5)
-        .attr("value", selBreedData.affection)
-        .attr("disabled", true);
-    //docility scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Docility: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 5)
-        .attr("value", selBreedData.docility)
-        .attr("disabled", true);
-    //intelligence scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Intelligence: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 5)
-        .attr("value", selBreedData.intelligence)
-        .attr("disabled", true);
-    //independence scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Independence: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 5)
-        .attr("value", selBreedData.independence)
-        .attr("disabled", true);
-    //hardiness scale
-    var tr = tbody.append("tr");
-    tr.append("td")
-        .classed("tdHeader", true)
-        .text("Hardiness: ");
-    tr.append("td")
-        .append("input")
-        .classed("slider", true)
-        .attr("type", "range")
-        .attr("min", 1)
-        .attr("max", 5)
-        .attr("value", selBreedData.hardiness)
-        .attr("disabled", true);
+    tr.append("td").text(colOptions);
+    // //playfullness scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Playfullness: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 5)
+    //     .attr("value", selBreedData.playfullness)
+    //     .attr("disabled", true);
+    // //activity scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Activity: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 5)
+    //     .attr("value", selBreedData.activity)
+    //     .attr("disabled", true);
+    // //friendliness to other pets scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Friendliness to other pets: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 5)
+    //     .attr("value", selBreedData.friendliness_others)
+    //     .attr("disabled", true);
+    // //friendliness to children scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Friendliness to children: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 5)
+    //     .attr("value", selBreedData.friendliness_children)
+    //     .attr("disabled", true);
+    // //grooming scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Grooming: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 5)
+    //     .attr("value", selBreedData.grooming)
+    //     .attr("disabled", true);
+    // //vocality scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Vocality: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 5)
+    //     .attr("value", selBreedData.vocality)
+    //     .attr("disabled", true);
+    // //attention scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Attention: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 5)
+    //     .attr("value", selBreedData.attention)
+    //     .attr("disabled", true);
+    // //affection scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Affection: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 5)
+    //     .attr("value", selBreedData.affection)
+    //     .attr("disabled", true);
+    // //docility scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Docility: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 5)
+    //     .attr("value", selBreedData.docility)
+    //     .attr("disabled", true);
+    // //intelligence scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Intelligence: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 5)
+    //     .attr("value", selBreedData.intelligence)
+    //     .attr("disabled", true);
+    // //independence scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Independence: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 5)
+    //     .attr("value", selBreedData.independence)
+    //     .attr("disabled", true);
+    // //hardiness scale
+    // var tr = tbody.append("tr");
+    // tr.append("td")
+    //     .classed("tdHeader", true)
+    //     .text("Hardiness: ");
+    // tr.append("td")
+    //     .append("input")
+    //     .classed("slider", true)
+    //     .attr("type", "range")
+    //     .attr("min", 1)
+    //     .attr("max", 5)
+    //     .attr("value", selBreedData.hardiness)
+    //     .attr("disabled", true);
+
+    var svgHeight = 600;
+    var svgWidth = 500;
+
+    var chartMargin = {
+        top: 30,
+        left: 5
+    };
+
+    var svg = d3.select("#scales")
+        .html("")
+        .append("svg")
+        .attr("height", svgHeight)
+        .attr("width", svgWidth);
+
+    var chartGroup = svg.append("g")
+        .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
+
+    var breedScales = [{ "Type": "Playfullness", "Scale": parseInt(selBreedData.playfullness) },
+    { "Type": "Activity", "Scale": parseInt(selBreedData.activity) },
+    { "Type": "Friendliness to other pets scale", "Scale": parseInt(selBreedData.friendliness_others) },
+    { "Type": "Friendliness to children scale", "Scale": parseInt(selBreedData.friendliness_children) },
+    { "Type": "Grooming", "Scale": parseInt(selBreedData.grooming) },
+    { "Type": "Vocality", "Scale": parseInt(selBreedData.vocality) },
+    { "Type": "Attention", "Scale": parseInt(selBreedData.attention) },
+    { "Type": "Affection", "Scale": parseInt(selBreedData.affection) },
+    { "Type": "Docility", "Scale": parseInt(selBreedData.docility) },
+    { "Type": "Intelligence", "Scale": parseInt(selBreedData.intelligence) },
+    { "Type": "Independence", "Scale": parseInt(selBreedData.independence) },
+    { "Type": "Hardiness", "Scale": parseInt(selBreedData.hardiness) }];
+
+    var barGroup = chartGroup.selectAll("rect")
+        .data(breedScales)
+        .enter()
+        .append("g");
+
+    barGroup.append("rect")
+        .classed("bar", true)
+        .attr("width", function (d) {
+            return d.Scale * 100;
+        })
+        .attr("height", 20)
+        .attr("x", 0)
+        .attr("y", function (d, i) {
+            return i * 60;
+        });
+
+    barGroup.append("text")
+        .attr("dx", 0)
+        .attr("dy", function (d, i) {
+            return (i * 60) - 10;
+        })
+        .text(function (d) {
+            if (isNaN(d.Scale)) {
+                return d.Type + ": unknown";
+            }
+            else {
+                return d.Type + ": " + d.Scale;
+            }
+
+        });
 }
