@@ -108,6 +108,10 @@ canvas {
   opacity: 1;
 }
 
+.sunburstBox {
+  padding-top: 50px;
+}
+
 .breeds-row {
   text-align: center;
   padding: 10px;
@@ -139,6 +143,3 @@ tr td:first-child{
   border-radius: 25px;
 }
 
-.barBackgrd {
-  fill: grey;
-}
