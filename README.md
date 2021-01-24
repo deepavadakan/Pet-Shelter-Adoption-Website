@@ -52,6 +52,7 @@
 * Splinter
 * Selenium
 * BeautifulSoup
+* [Petpy](https://pypi.org/project/petpy/)
 
 ## Setup
 0) Base Authorization Code [Python]
