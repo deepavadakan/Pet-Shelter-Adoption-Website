@@ -333,7 +333,7 @@ function displayDogBreedInfo(breedData, selBreed) {
     //     .attr("disabled", true);
 
     var svgHeight = 600;
-    var svgWidth = 500;
+    var svgWidth = "100%";
 
     var chartMargin = {
         top: 30,
