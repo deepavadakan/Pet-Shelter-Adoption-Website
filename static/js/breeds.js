@@ -1,7 +1,7 @@
 // Select the dropdowns for pet type and characteristics
 var dropDownCharacteristics = d3.select('#characteristics');
 
-// pet characteristics lists for dropdown men
+// pet characteristics lists for dropdown menu
 var dogCharacteristics = ["Height", "Weight", "Group"];
 var catCharacteristics = ["Weight", "Coat Length", "Playfullness"];
 
@@ -36,6 +36,7 @@ function plotSunburst(selection) {
     if (petTypeSelected === "dogs") { //Dogs
         d3.csv("../static/data/dog_breeds.csv").then(function (dogData) {
             console.log(dogData);
+            // initialize variables
             var ids = [];
             var labels = [];
             var parents = [];
@@ -62,7 +63,7 @@ function plotSunburst(selection) {
                         parents.push(data.weight_group);
                     });
                     break;
-                default:
+                default: //Height
                     ids = ["xsmall", "small", "medium", "large", "xlarge"];
                     labels = ["xsmall", "small", "medium", "large", "xlarge"];
                     parents = ["", "", "", "", ""];
@@ -108,6 +109,7 @@ function plotSunburst(selection) {
     } else { //Cats
         d3.csv("../static/data/cat_breeds.csv").then(function (catData) {
             console.log(catData);
+            // intialize variables
             var ids = [];
             var labels = [];
             var parents = [];
@@ -133,8 +135,9 @@ function plotSunburst(selection) {
                         labels.push(data.breed_name);
                         parents.push(data.playfullness);
                     });
+                    displayLegend();
                     break;
-                default:
+                default: // Weight
                     ids = ["small", "medium", "large"];
                     labels = ["small", "medium", "large"];
                     parents = ["", "", ""];
@@ -162,7 +165,10 @@ function plotSunburst(selection) {
                 responsive: true
             }
 
-            var layout = { margin: { l: 0, r: 0, b: 0, t: 0 } }
+            var layout = { 
+                margin: { l: 0, r: 0, b: 0, t: 0 },
+                showlegend: true
+            }
 
             // Render the plot to the div tag with id "sunburst"
             Plotly.newPlot('sunburst', data, layout, config)
@@ -179,7 +185,7 @@ function plotSunburst(selection) {
     }
 }
 
-// display Breed Info when sunburst is clicked
+// display selected Breed Info
 function displayDogBreedInfo(breedData, selBreed) {
     console.log(breedData);
 
@@ -188,6 +194,7 @@ function displayDogBreedInfo(breedData, selBreed) {
     // first clear the table of existing data
     tbody.html("");
 
+    // retrieve the breed info
     var filteredData = breedData.filter(data => data.breed_name === selBreed);
     var selBreedData = filteredData[0];
 
@@ -197,7 +204,7 @@ function displayDogBreedInfo(breedData, selBreed) {
     // breed name
     tbody.append("tr").append("td")
         .attr("colspan", 2)
-        .classed("breed_name", true)
+        .classed("breedName", true)
         .text(selBreedData.breed_name)
         .append("hr");
     // image
@@ -219,7 +226,7 @@ function displayDogBreedInfo(breedData, selBreed) {
     var tr = tbody.append("tr");
     tr.append("td")
         .classed("tdHeader", true)
-        .text("Rank: ");
+        .text("rank: ");
     tr.append("td").text(selBreedData.akc_rank.replace("Ranks ", ""));
     // life expectancy
     var tr = tbody.append("tr");
@@ -253,117 +260,42 @@ function displayDogBreedInfo(breedData, selBreed) {
         .classed("tdHeader", true)
         .text("Color options: ");
     tr.append("td").text(colOptions);
-    // // scale legend
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Scale: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 100)
-    //     .attr("value", selBreedData.brushing_scale.replace("%", ""))
-    //     .attr("disabled", true);
-    // //brushing scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Brushing: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 100)
-    //     .attr("value", selBreedData.brushing_scale.replace("%", ""))
-    //     .attr("disabled", true);
-    // //shedding scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Shedding: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 100)
-    //     .attr("value", selBreedData.shedding_scale.replace("%", ""))
-    //     .attr("disabled", true);
-    // //energy scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Energy: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 100)
-    //     .attr("value", selBreedData.energy_scale.replace("%", ""))
-    //     .attr("disabled", true);
-    // //trainability scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Trainability: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 100)
-    //     .attr("value", selBreedData.trainability_scale.replace("%", ""))
-    //     .attr("disabled", true);
-    // //temperment scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Temperment: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 100)
-    //     .attr("value", selBreedData.temperment_scale.replace("%", ""))
-    //     .attr("disabled", true);
 
+    // draw scales
     var svgHeight = 600;
     var svgWidth = "100%";
 
-    var chartMargin = {
+    var scalesMargin = {
         top: 30,
         left: 5
     };
 
-    var svg = d3.select("#scales")
+    var svg = d3.select("#breedScales")
         .html("")
         .append("svg")
         .attr("height", svgHeight)
         .attr("width", svgWidth);
 
-    var chartGroup = svg.append("g")
-        .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
+    var scalesGroup = svg.append("g")
+        .attr("transform", `translate(${scalesMargin.left}, ${scalesMargin.top})`);
 
-    var breedScales = [{ "Type": "Brushing", "Scale": parseInt(selBreedData.brushing_scale.replace("%", "")) },
-    { "Type": "Shedding", "Scale": parseInt(selBreedData.shedding_scale.replace("%", "")) },
-    { "Type": "Energy", "Scale": parseInt(selBreedData.energy_scale.replace("%", "")) },
-    { "Type": "Trainability", "Scale": parseInt(selBreedData.trainability_scale.replace("%", "")) },
-    { "Type": "Temperment", "Scale": parseInt(selBreedData.temperment_scale.replace("%", "")) }];
+    // array of dicts for scales
+    var breedScales = [{ "type": "Brushing", "scale": parseInt(selBreedData.brushing_scale.replace("%", "")) },
+    { "type": "Shedding", "scale": parseInt(selBreedData.shedding_scale.replace("%", "")) },
+    { "type": "Energy", "scale": parseInt(selBreedData.energy_scale.replace("%", "")) },
+    { "type": "Trainability", "scale": parseInt(selBreedData.trainability_scale.replace("%", "")) },
+    { "type": "Temperment", "scale": parseInt(selBreedData.temperment_scale.replace("%", "")) }];
 
-    var barGroup = chartGroup.selectAll("rect")
+    // draw bars
+    var barGroup = scalesGroup.selectAll("rect")
         .data(breedScales)
         .enter()
         .append("g");
 
     barGroup.append("rect")
-        .classed("bar", true)
+        .classed("scalesBar", true)
         .attr("width", function (d) {
-            return d.Scale * 5;
+            return d.scale * 5;
         })
         .attr("height", 20)
         .attr("x", 0)
@@ -371,21 +303,20 @@ function displayDogBreedInfo(breedData, selBreed) {
             return i * 60;
         });
 
+    // add text for the scales
     barGroup.append("text")
         .attr("dx", 0)
         .attr("dy", function (d, i) {
             return (i * 60) - 10;
         })
         .text(function (d) {
-            if (isNaN(d.Scale)) {
-                return d.Type + ": unknown";
+            if (isNaN(d.scale)) {
+                return d.type + ": unknown";
             }
             else {
-                return d.Type + ": " + d.Scale + "%";
+                return d.type + ": " + d.scale + "%";
             }
-
         });
-
 }
 
 // function to display cat breed information
@@ -397,6 +328,7 @@ function displayCatBreedInfo(breedData, selBreed) {
     // first clear the table of existing data
     tbody.html("");
 
+    // retrieve the breed info
     var filteredData = breedData.filter(data => data.breed_name === selBreed);
     var selBreedData = filteredData[0];
 
@@ -406,7 +338,7 @@ function displayCatBreedInfo(breedData, selBreed) {
     // breed name
     tbody.append("tr").append("td")
         .attr("colspan", 2)
-        .classed("breed_name", true)
+        .classed("breedName", true)
         .text(selBreedData.breed_name)
         .append("hr");
     // image
@@ -450,202 +382,49 @@ function displayCatBreedInfo(breedData, selBreed) {
         .classed("tdHeader", true)
         .text("Color options: ");
     tr.append("td").text(colOptions);
-    // //playfullness scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Playfullness: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 5)
-    //     .attr("value", selBreedData.playfullness)
-    //     .attr("disabled", true);
-    // //activity scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Activity: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 5)
-    //     .attr("value", selBreedData.activity)
-    //     .attr("disabled", true);
-    // //friendliness to other pets scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Friendliness to other pets: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 5)
-    //     .attr("value", selBreedData.friendliness_others)
-    //     .attr("disabled", true);
-    // //friendliness to children scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Friendliness to children: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 5)
-    //     .attr("value", selBreedData.friendliness_children)
-    //     .attr("disabled", true);
-    // //grooming scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Grooming: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 5)
-    //     .attr("value", selBreedData.grooming)
-    //     .attr("disabled", true);
-    // //vocality scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Vocality: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 5)
-    //     .attr("value", selBreedData.vocality)
-    //     .attr("disabled", true);
-    // //attention scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Attention: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 5)
-    //     .attr("value", selBreedData.attention)
-    //     .attr("disabled", true);
-    // //affection scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Affection: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 5)
-    //     .attr("value", selBreedData.affection)
-    //     .attr("disabled", true);
-    // //docility scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Docility: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 5)
-    //     .attr("value", selBreedData.docility)
-    //     .attr("disabled", true);
-    // //intelligence scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Intelligence: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 5)
-    //     .attr("value", selBreedData.intelligence)
-    //     .attr("disabled", true);
-    // //independence scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Independence: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 5)
-    //     .attr("value", selBreedData.independence)
-    //     .attr("disabled", true);
-    // //hardiness scale
-    // var tr = tbody.append("tr");
-    // tr.append("td")
-    //     .classed("tdHeader", true)
-    //     .text("Hardiness: ");
-    // tr.append("td")
-    //     .append("input")
-    //     .classed("slider", true)
-    //     .attr("type", "range")
-    //     .attr("min", 1)
-    //     .attr("max", 5)
-    //     .attr("value", selBreedData.hardiness)
-    //     .attr("disabled", true);
 
+    // draw scales
     var svgHeight = 600;
     var svgWidth = 500;
 
-    var chartMargin = {
+    var scalesMargin = {
         top: 30,
         left: 5
     };
 
-    var svg = d3.select("#scales")
+    var svg = d3.select("#breedScales")
         .html("")
         .append("svg")
         .attr("height", svgHeight)
         .attr("width", svgWidth);
 
-    var chartGroup = svg.append("g")
-        .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
+    var scalesGroup = svg.append("g")
+        .attr("transform", `translate(${scalesMargin.left}, ${scalesMargin.top})`);
 
-    var breedScales = [{ "Type": "Playfullness", "Scale": parseInt(selBreedData.playfullness) },
-    { "Type": "Activity", "Scale": parseInt(selBreedData.activity) },
-    { "Type": "Friendliness to other pets scale", "Scale": parseInt(selBreedData.friendliness_others) },
-    { "Type": "Friendliness to children scale", "Scale": parseInt(selBreedData.friendliness_children) },
-    { "Type": "Grooming", "Scale": parseInt(selBreedData.grooming) },
-    { "Type": "Vocality", "Scale": parseInt(selBreedData.vocality) },
-    { "Type": "Attention", "Scale": parseInt(selBreedData.attention) },
-    { "Type": "Affection", "Scale": parseInt(selBreedData.affection) },
-    { "Type": "Docility", "Scale": parseInt(selBreedData.docility) },
-    { "Type": "Intelligence", "Scale": parseInt(selBreedData.intelligence) },
-    { "Type": "Independence", "Scale": parseInt(selBreedData.independence) },
-    { "Type": "Hardiness", "Scale": parseInt(selBreedData.hardiness) }];
+    // array of dicts for scales
+    var breedScales = [{ "type": "Playfullness", "scale": parseInt(selBreedData.playfullness) },
+    { "type": "Activity", "scale": parseInt(selBreedData.activity) },
+    { "type": "Friendliness to other pets scale", "scale": parseInt(selBreedData.friendliness_others) },
+    { "type": "Friendliness to children scale", "scale": parseInt(selBreedData.friendliness_children) },
+    { "type": "Grooming", "scale": parseInt(selBreedData.grooming) },
+    { "type": "Vocality", "scale": parseInt(selBreedData.vocality) },
+    { "type": "Attention", "scale": parseInt(selBreedData.attention) },
+    { "type": "Affection", "scale": parseInt(selBreedData.affection) },
+    { "type": "Docility", "scale": parseInt(selBreedData.docility) },
+    { "type": "Intelligence", "scale": parseInt(selBreedData.intelligence) },
+    { "type": "Independence", "scale": parseInt(selBreedData.independence) },
+    { "type": "Hardiness", "scale": parseInt(selBreedData.hardiness) }];
 
-    var barGroup = chartGroup.selectAll("rect")
+    // draw bars
+    var barGroup = scalesGroup.selectAll("rect")
         .data(breedScales)
         .enter()
         .append("g");
 
     barGroup.append("rect")
-        .classed("bar", true)
+        .classed("scalesBar", true)
         .attr("width", function (d) {
-            return d.Scale * 100;
+            return d.scale * 100;
         })
         .attr("height", 20)
         .attr("x", 0)
@@ -653,18 +432,46 @@ function displayCatBreedInfo(breedData, selBreed) {
             return i * 60;
         });
 
+    // add text for the scales
     barGroup.append("text")
         .attr("dx", 0)
         .attr("dy", function (d, i) {
             return (i * 60) - 10;
         })
         .text(function (d) {
-            if (isNaN(d.Scale)) {
-                return d.Type + ": unknown";
+            if (isNaN(d.scale)) {
+                return d.type + ": unknown";
             }
             else {
-                return d.Type + ": " + d.Scale;
+                return d.type + ": " + d.scale;
             }
-
         });
+}
+
+// display legend for sunburst
+function displayLegend() {
+
+    var legendPlayfullness = [{ "rank": 5, "scale": "Life is nothing but games"},
+    { "rank": 4, "scale": "I’m always up to play!"},
+    { "rank": 3, "scale": "Only when I feel like it"},
+    { "rank": 2, "scale": "I’d Rather not…" },
+    { "rank": 1, "scale": "Leave me alone!" }];
+    
+    // find the tbody element
+    var tbody = d3.select("#breedLegend");
+    // first clear the table of existing data
+    tbody.html("");
+    tbody.append("tr")
+        .append("td")
+        .attr("colSpan", 2)
+        .classed("tdHeader", true)
+        .text("Scale");
+
+    for (i=0; i < legendPlayfullness.length; i++) {
+        var tr = tbody.append("tr");
+        tr.append("td")
+            .classed("tdHeader", true)
+            .text(legendPlayfullness[i].rank + ": ");
+        tr.append("td").text(legendPlayfullness[i].scale);
+    }
 }

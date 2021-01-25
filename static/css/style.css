@@ -1,4 +1,4 @@
-
+/* Main page */
 canvas {
   display: block;
   width: 100%;
@@ -108,6 +108,7 @@ canvas {
   opacity: 1;
 }
 
+/* Breeds page */
 .sunburstBox {
   padding-top: 50px;
 }
@@ -117,29 +118,31 @@ canvas {
   padding: 10px;
 }
 
-td {
+#breedTable td {
   text-align: left;
   padding: 5px;
 }
 
-tr td:first-child{
+#breedTable tr td:first-child{
   min-width: 40%;
 }
 
 .tdHeader {
   font-weight: bold;
 }
-.breed_name {
+.breedName {
   font-size: x-large;
   margin: 0;
 }
-#scales {
+#breedScales {
   display: flex;
   justify-content: left;
-
 }
-.bar {
+.scalesBar {
   fill: orange;
   border-radius: 25px;
 }
-
+#breedLegend td{
+  padding-left: 20px;
+  text-align: left;
+}
