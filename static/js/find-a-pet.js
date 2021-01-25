@@ -1,7 +1,7 @@
 // Creating map object
 
 var myMap = L.map("map", {
-    center: [45.52, -122.67],
+    center: [40.502754, -74.452221],
     zoom: 13
   });
   console.log(myMap)
@@ -18,3 +18,24 @@ var myMap = L.map("map", {
   }).addTo(myMap);
   console.log(myMap)
   console.log("find a pet")
+
+// Use this link to get the geojson data.
+// var link = "static/data/animals.json";
+
+// Convert address to lat lon to plot points
+// map.on('geosearch_showlocation', function (result) {
+//     L.marker([result.x, result.y]).addTo(myMap)
+// });
+
+// $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+address, function(data){
+//        console.log(data);
+//     });
+
+// Creating Markers
+// for (var i = 0; i < link.length; i++) {
+//     var id = link[i];
+//     L.marker(id.address)
+//       .bindPopup("<h1>" + id.name + "</h1> <hr> <h3>breeds " + id.breeds + "</h3>")
+//       .addTo(myMap);
+//   }
+    
