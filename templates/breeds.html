@@ -40,14 +40,16 @@
   </nav>
   <!-- NAVBAR END -->
 
-  <!-- Dog and Cat options-->
+  <!-- Breeds -->
   <div class="row breeds-row">
+    <!-- Dropdown to choose pet type (Dog or Cat) -->
     <div>Choose Pet Type
       <select id="pet-type" onchange="fillDropDown(this.value)">
         <option value="dogs">Dogs</option>
         <option value="cats">Cats</option>
       </select>
     </div>
+    <!-- Drop down to select Breed charateristics -->
     <div class="row breeds-row">
       <div>Find Breeds by
         <select id="characteristics" onchange="plotSunburst(this.value)">
@@ -55,9 +57,11 @@
       </div>
     </div>
     <div class="row breeds-row">
+      <!-- Sunburst chart -->
       <div class="col-md-6 col-sm-6 sunburstBox">
         <div id="sunburst"></div>
       </div>
+      <!-- Breed Information -->
       <div class="col-md-6 col-sm-6">
         <table>
           <tbody id="breedTable"></tbody>
@@ -66,7 +70,13 @@
     </div>
     <div class="row">
       <div class="col-md-6 col-sm-6">
+        <div>
+          <table>
+            <tbody id="breedLegend"></tbody>
+          </table>
+        </div>
       </div>
+      <!-- Breed Scales -->
       <div class="col-md-6 col-sm-6">
         <div id="breedScales"></div>
       </div>
