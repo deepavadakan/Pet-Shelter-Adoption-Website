@@ -33,6 +33,11 @@ function fillDropDown(petType) {
 function plotSunburst(selection) {
     console.log(selection);
 
+    // find the tbody element
+    var tbody = d3.select("#breedLegend");
+    // first clear the table of existing data
+    tbody.html("");
+
     if (petTypeSelected === "dogs") { //Dogs
         d3.csv("../static/data/dog_breeds.csv").then(function (dogData) {
             console.log(dogData);
@@ -101,13 +106,14 @@ function plotSunburst(selection) {
                         console.log(selBreedData);
                         if (!(selBreedData.nextLevel)) {
                             breedName = selBreedData.points[0].label;
-                            displayDogBreedInfo(dogData, breedName)
+                            displayDogBreedInfo(dogData, breedName);
                         }
                     })
                 })
         });
     } else { //Cats
         d3.csv("../static/data/cat_breeds.csv").then(function (catData) {
+            
             console.log(catData);
             // intialize variables
             var ids = [];
@@ -135,7 +141,7 @@ function plotSunburst(selection) {
                         labels.push(data.breed_name);
                         parents.push(data.playfullness);
                     });
-                    displayLegend();
+                    displayLegend(selection);
                     break;
                 default: // Weight
                     ids = ["small", "medium", "large"];
@@ -165,7 +171,7 @@ function plotSunburst(selection) {
                 responsive: true
             }
 
-            var layout = { 
+            var layout = {
                 margin: { l: 0, r: 0, b: 0, t: 0 },
                 showlegend: true
             }
@@ -276,15 +282,15 @@ function displayDogBreedInfo(breedData, selBreed) {
         .attr("height", svgHeight)
         .attr("width", svgWidth);
 
-    var scalesGroup = svg.append("g")
-        .attr("transform", `translate(${scalesMargin.left}, ${scalesMargin.top})`);
-
     // array of dicts for scales
     var breedScales = [{ "type": "Brushing", "scale": parseInt(selBreedData.brushing_scale.replace("%", "")) },
     { "type": "Shedding", "scale": parseInt(selBreedData.shedding_scale.replace("%", "")) },
     { "type": "Energy", "scale": parseInt(selBreedData.energy_scale.replace("%", "")) },
     { "type": "Trainability", "scale": parseInt(selBreedData.trainability_scale.replace("%", "")) },
     { "type": "Temperment", "scale": parseInt(selBreedData.temperment_scale.replace("%", "")) }];
+
+    var scalesGroup = svg.append("g")
+        .attr("transform", `translate(${scalesMargin.left}, ${scalesMargin.top})`);
 
     // draw bars
     var barGroup = scalesGroup.selectAll("rect")
@@ -317,6 +323,25 @@ function displayDogBreedInfo(breedData, selBreed) {
                 return d.type + ": " + d.scale + "%";
             }
         });
+
+    var toolTip = d3.tip()
+        .attr("class", "tooltip")
+        .offset([80, -60])
+        // .html(function(d) {
+        //   console.log(d);
+        //   return d.type;
+        .html(function() {
+            console.log(this);
+            return "Tooltip";
+        });
+    
+    // Create tooltip in the chart
+    scalesGroup.call(toolTip);
+    barGroup.on('mouseover', function(d){
+        console.log("tooltip");
+        toolTip.show(d, this);
+      })
+      .on('mouseout', toolTip.hide);
 }
 
 // function to display cat breed information
@@ -449,29 +474,32 @@ function displayCatBreedInfo(breedData, selBreed) {
 }
 
 // display legend for sunburst
-function displayLegend() {
+function displayLegend(selection) {
 
-    var legendPlayfullness = [{ "rank": 5, "scale": "Life is nothing but games"},
-    { "rank": 4, "scale": "I’m always up to play!"},
-    { "rank": 3, "scale": "Only when I feel like it"},
-    { "rank": 2, "scale": "I’d Rather not…" },
-    { "rank": 1, "scale": "Leave me alone!" }];
-    
     // find the tbody element
     var tbody = d3.select("#breedLegend");
     // first clear the table of existing data
     tbody.html("");
-    tbody.append("tr")
-        .append("td")
-        .attr("colSpan", 2)
-        .classed("tdHeader", true)
-        .text("Scale");
 
-    for (i=0; i < legendPlayfullness.length; i++) {
-        var tr = tbody.append("tr");
-        tr.append("td")
+    if (selection === "Playfullness") {
+        var legendPlayfullness = [{ "rank": 5, "scale": "Life is nothing but games" },
+        { "rank": 4, "scale": "I’m always up to play!" },
+        { "rank": 3, "scale": "Only when I feel like it" },
+        { "rank": 2, "scale": "I’d Rather not…" },
+        { "rank": 1, "scale": "Leave me alone!" }];
+
+        tbody.append("tr")
+            .append("td")
+            .attr("colSpan", 2)
             .classed("tdHeader", true)
-            .text(legendPlayfullness[i].rank + ": ");
-        tr.append("td").text(legendPlayfullness[i].scale);
+            .text("Scale");
+
+        for (i = 0; i < legendPlayfullness.length; i++) {
+            var tr = tbody.append("tr");
+            tr.append("td")
+                .classed("tdHeader", true)
+                .text(legendPlayfullness[i].rank + ": ");
+            tr.append("td").text(legendPlayfullness[i].scale);
+        }
     }
 }
