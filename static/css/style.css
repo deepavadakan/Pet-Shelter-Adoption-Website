@@ -36,7 +36,6 @@ canvas {
 .dashboard-circles-box {
   display: flex;
   justify-content: left;
-  
   vertical-align: middle;
   text-align: center;
 }
@@ -44,49 +43,37 @@ canvas {
 #dashboard-circle1, #dashboard-circle2, #dashboard-circle3, #dashboard-circle4 {
   height: calc(0.2 * 100vmin); /* 64px at 320 and 256px at 1280 */
   width : calc(0.2 * 100vmin); /* nice responsive sizing */
-  
-
   background-position: center;  /* center image in parent */
   background-repeat: no-repeat; /* prevents repeat of image! */
   background-size: cover;       /* stretch/shrink to fill */
-  
   border-radius: 50%;
   opacity: 0.4;
 }
 
 #dashboard-circle1 {
   background-image: url("../images/pet1.png");
-
 }
-
 #dashboard-circle2 {
   background-image: url("../images/pet2.png");
-
 }
 #dashboard-circle3 {
   background-image: url("../images/pet3.png");
-
 }
 #dashboard-circle4 {
   background-image: url("../images/graphs.png");
 }
-
 #dashboard-circle1:hover {
   opacity: 0.8;
 }
-
 #dashboard-circle2:hover {
   opacity: 0.8;
 }
-
 #dashboard-circle3:hover {
   opacity: 0.8;
 }
-
 #dashboard-circle4:hover {
   opacity: 0.8;
 }
-
 .dashboard-circles-box a {
   text-decoration: none;
 }
@@ -142,7 +129,8 @@ canvas {
   fill: orange;
   border-radius: 25px;
 }
+
 #breedLegend td{
-  padding-left: 20px;
+  padding-left: 40px;
   text-align: left;
 }
