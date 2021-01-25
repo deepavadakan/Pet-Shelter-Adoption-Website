@@ -134,3 +134,9 @@ canvas {
   padding-left: 40px;
   text-align: left;
 }
+
+#map,
+body,
+html {
+  height: 100%;
+}

@@ -4,6 +4,7 @@ var myMap = L.map("map", {
     center: [45.52, -122.67],
     zoom: 13
   });
+  console.log(myMap)
   
   // Adding a tile layer (the background map image) to our map
   // We use the addTo method to add objects to our map
@@ -15,3 +16,5 @@ var myMap = L.map("map", {
     id: "mapbox/streets-v11",
     accessToken: API_KEY
   }).addTo(myMap);
+  console.log(myMap)
+  console.log("find a pet")
