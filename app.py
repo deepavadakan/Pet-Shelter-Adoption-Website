@@ -1,11 +1,19 @@
 import numpy as np
+import pymongo
+import json
 
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, Response
 
 
 #################################################
 # Database Setup
 #################################################
+# setup mongo connection
+conn = "mongodb://localhost:27017"
+client = pymongo.MongoClient(conn)
+
+# connect to mongo db and collection
+db = client.rescue_angels_db
 
 
 #################################################
@@ -24,11 +32,21 @@ def home():
     # Return template and data
     return render_template("index.html")
 
-# route to find pet breeds
-@app.route("/breeds")
-def breeds():
+# route for breeds page
+@app.route("/breeds/")
+@app.route("/breeds/<pet_type>")
+def breeds(pet_type=None):
 
-    return render_template("breeds.html")
+    if pet_type == "dogs":
+        dog_breeds = list(db.dog_breeds.find())
+        print(dog_breeds)
+        #return jsonify(dog_breeds)
+        return  Response(json.dumps(dog_breeds,default=str),mimetype="application/json")
+    elif pet_type == "cats":
+        cat_breeds = list(db.cat_breeds.find())
+        return jsonify(cat_breeds)
+    else:
+        return render_template("breeds.html")
 
 # route to find a pet 
 @app.route("/find-a-pet")
