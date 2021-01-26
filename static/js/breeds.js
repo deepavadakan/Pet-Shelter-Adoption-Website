@@ -33,13 +33,17 @@ function fillDropDown(petType) {
 function plotSunburst(selection) {
     console.log(selection);
 
-    // find the tbody element
+    // find the tbody element for legend table
     var tbody = d3.select("#breedLegend");
-    // first clear the table of existing data
+    // first clear the legend table of existing data
     tbody.html("");
 
     if (petTypeSelected === "dogs") { //Dogs
-        d3.csv("../static/data/dog_breeds.csv").then(function (dogData) {
+        console.log(petTypeSelected);
+        d3.json("/breeds/dogs", function (dogData, err) {
+            if (err) throw err;
+            //d3.csv("../static/data/dog_breeds.csv").then(function (dogData) {
+            console.log("dogData");
             console.log(dogData);
             // initialize variables
             var ids = [];
@@ -110,10 +114,13 @@ function plotSunburst(selection) {
                         }
                     })
                 })
-        });
+        }).catch(function(error) {
+            console.log(error);
+          });
     } else { //Cats
-        d3.csv("../static/data/cat_breeds.csv").then(function (catData) {
-            
+        d3.json('/breeds/cats'), (catData) => {
+            // d3.csv("../static/data/cat_breeds.csv").then(function (catData) {
+
             console.log(catData);
             // intialize variables
             var ids = [];
@@ -187,7 +194,8 @@ function plotSunburst(selection) {
                         }
                     })
                 })
-        });
+            //});
+        };
     }
 }
 
@@ -330,18 +338,18 @@ function displayDogBreedInfo(breedData, selBreed) {
         // .html(function(d) {
         //   console.log(d);
         //   return d.type;
-        .html(function() {
+        .html(function () {
             console.log(this);
             return "Tooltip";
         });
-    
+
     // Create tooltip in the chart
     scalesGroup.call(toolTip);
-    barGroup.on('mouseover', function(d){
+    barGroup.on('mouseover', function (d) {
         console.log("tooltip");
         toolTip.show(d, this);
-      })
-      .on('mouseout', toolTip.hide);
+    })
+        .on('mouseout', toolTip.hide);
 }
 
 // function to display cat breed information
