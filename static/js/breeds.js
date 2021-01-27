@@ -9,14 +9,14 @@ var catCharacteristics = ["Weight", "Coat Length", "Playfullness"];
 var petTypeSelected;
 
 // functions to run when page loads
-d3.select(window).on("load", fillDropDown('dogs'));
+d3.select(window).on("load", fillDropDown('Dogs'));
 
 // function to fill dropdown list of Dog or Cat Characteristics
 function fillDropDown(petType) {
     petTypeSelected = petType;
     console.log(petTypeSelected);
     dropDownCharacteristics.html("");
-    if (petType === "dogs") {
+    if (petType === "Dogs") {
         dogCharacteristics.forEach(item => {
             dropDownCharacteristics.append("option").text(item).attr("value", item);
         });
@@ -33,14 +33,27 @@ function fillDropDown(petType) {
 function plotSunburst(selection) {
     console.log(selection);
 
-    // find the tbody element
-    var tbody = d3.select("#breedLegend");
-    // first clear the table of existing data
-    tbody.html("");
+    // clear the legend table of existing data
+    d3.select("#breedLegend").html("");
+    
+    // clear the breed info table of existing data
+    d3.select("#breedTable").html("");
+    
+    // clear scales
+    d3.select("#breedScales").html("")
+    
 
-    if (petTypeSelected === "dogs") { //Dogs
-        d3.csv("../static/data/dog_breeds.csv").then(function (dogData) {
-            console.log(dogData);
+    if (petTypeSelected === "Dogs") { //Dogs
+        console.log(petTypeSelected);
+        d3.json("/breeds/dogs").then(function (dogData, err) {
+            //d3.csv("../static/data/dog_breeds.csv").then(function (dogData) {
+            if (err) { throw err };
+            if (!dogData) {
+                console.log("I wasn't able to get data from the Web API you selected.");
+                return;
+            }
+            
+            //console.log(dogData);
             // initialize variables
             var ids = [];
             var labels = [];
@@ -96,7 +109,13 @@ function plotSunburst(selection) {
                 responsive: true
             }
 
-            var layout = { margin: { l: 0, r: 0, b: 0, t: 0 } }
+            var layout = {
+                title: `${petTypeSelected} grouped by ${selection}`,
+                autoresize: true,
+                font: { size: 16 },
+                margin: { l: 0, r: 0, b: 0, t: 40 },
+                showlegend: true
+            }
 
             // Render the plot to the div tag with id "sunburst"
             Plotly.newPlot('sunburst', data, layout, config)
@@ -110,11 +129,19 @@ function plotSunburst(selection) {
                         }
                     })
                 })
+        }).catch(function (error) {
+            console.log(error);
         });
     } else { //Cats
-        d3.csv("../static/data/cat_breeds.csv").then(function (catData) {
-            
-            console.log(catData);
+        d3.json("/breeds/cats").then(function (catData, err) {
+            // d3.csv("../static/data/cat_breeds.csv").then(function (catData) {
+            if (err) { throw err };
+            if (!catData) {
+                console.log("I wasn't able to get data from the Web API you selected.");
+                return;
+            }
+
+            //console.log(catData);
             // intialize variables
             var ids = [];
             var labels = [];
@@ -172,7 +199,10 @@ function plotSunburst(selection) {
             }
 
             var layout = {
-                margin: { l: 0, r: 0, b: 0, t: 0 },
+                title: `${petTypeSelected} grouped by ${selection}`,
+                autoresize: true,
+                font: { size: 16 },
+                margin: { l: 0, r: 0, b: 0, t: 40 },
                 showlegend: true
             }
 
@@ -187,6 +217,8 @@ function plotSunburst(selection) {
                         }
                     })
                 })
+        }).catch(function (error) {
+            console.log(error);
         });
     }
 }
@@ -206,7 +238,7 @@ function displayDogBreedInfo(breedData, selBreed) {
 
     console.log(selBreedData);
 
-    // display the data requested
+    // display the breed info
     // breed name
     tbody.append("tr").append("td")
         .attr("colspan", 2)
@@ -330,18 +362,18 @@ function displayDogBreedInfo(breedData, selBreed) {
         // .html(function(d) {
         //   console.log(d);
         //   return d.type;
-        .html(function() {
+        .html(function () {
             console.log(this);
             return "Tooltip";
         });
-    
+
     // Create tooltip in the chart
     scalesGroup.call(toolTip);
-    barGroup.on('mouseover', function(d){
+    barGroup.on('mouseover', function (d) {
         console.log("tooltip");
         toolTip.show(d, this);
-      })
-      .on('mouseout', toolTip.hide);
+    })
+        .on('mouseout', toolTip.hide);
 }
 
 // function to display cat breed information
@@ -359,7 +391,7 @@ function displayCatBreedInfo(breedData, selBreed) {
 
     console.log(selBreedData);
 
-    // display the data requested
+    // display the breed info
     // breed name
     tbody.append("tr").append("td")
         .attr("colspan", 2)

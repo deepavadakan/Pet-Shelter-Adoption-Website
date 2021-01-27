@@ -97,7 +97,7 @@ canvas {
 
 /* Breeds page */
 .sunburstBox {
-  padding-top: 50px;
+  padding-top: 13px;
 }
 
 .breeds-row {
@@ -162,3 +162,4 @@ body,
 html {
   height: 100%;
 }
+
