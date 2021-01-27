@@ -38,10 +38,10 @@ function optionChanged(dbSelected) {
 
 
 //Creating Markers
-for (var i = 0; i < link.length; i++) {
-    var id = link[i];
+for (var i = 0; i < dbSelected.length; i++) {
+    var id = dbSelected[i];
     L.marker(id.name)
-      .bindPopup(id.address + id.id)
+      .bindPopup("<h1>" + id.address + "</h1> <hr> <h3>"+ id.id + "</h3> <hr> <h3>"+ id.Latitude +"</h3> <hr> <h3>"+ id.Longitude + "</h3>")
       .addTo(myMap);
   }
 

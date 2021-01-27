@@ -57,12 +57,12 @@ def mongodb_web_api():
 
     db = client[rescue_angels_db]
 
-    collection = db[org_collection]
+    collection = db[org_new]
 
     results = collection.find()
     
     #results is a cursor object, when looping through it each result is a dictionary
-    animals_by_location_db = [ {"name": result["name"], "id": result["id"], "address_address1": result["address_address1"]} for result in results]
+    animals_by_location_db = [ {"name": result["name"], "id": result["id"], "Latitude": ["Latitude"], "Longitude": result["Longitude"], "address_address1": result["address_address1"]} for result in results]
 
     
     return jsonify(animals_by_location_db)
