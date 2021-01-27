@@ -48,9 +48,22 @@ def breeds(pet_type=None):
 
 # route to find a pet 
 @app.route("/find-a-pet")
-def find_a_pet():
+@app.route("/find-a-pet/<options>")
+def find_a_pet(options=None):
 
-    return render_template("find-a-pet.html")
+    if ((options == "Dog") | (options == "Cat")):
+        results = list(mongo.db.final_data.find( { "type": options } ))
+        
+        #results is a cursor object, when looping through it each result is a dictionary
+        animals_by_pettype = [ {"name": result["name_x"], 
+            #"photo": result["primary_photo_cropped_small"], 
+            "breed": result["breeds_primary"], 
+            "Latitude": result["Latitude"], 
+            "Longitude": result["Longitude"], 
+            "url": result["url_x"]} for result in results]
+        return jsonify(animals_by_pettype)
+    else:
+        return render_template("find-a-pet.html")
 
 # route to find organization s
 @app.route("/organizations")
@@ -67,20 +80,20 @@ def graphs():
 # Route that will return Web API JSON data from MongoDB
 @app.route("/mongodb-web-api")
 def mongodb_web_api():
-    #client = MongoClient('localhost', 27017)
-    client = MongoClient(localhost, 27017)
-
-    db = client[rescue_angels_db]
-
-    collection = db[org_new]
-
-    results = collection.find()
+    client = MongoClient('localhost', 27017)
+    # client = MongoClient(localhost, 27017)
     
-    #results is a cursor object, when looping through it each result is a dictionary
-    animals_by_location_db = [ {"name": result["name"], "id": result["id"], "Latitude": ["Latitude"], "Longitude": result["Longitude"], "address_address1": result["address_address1"]} for result in results]
+    # db = client[rescue_angels_db]
+
+    # collection = db[org_new]
+
+    # results = collection.find()
+
+    # #results is a cursor object, when looping through it each result is a dictionary
+    # animals_by_location_db = [ {"name": result["name"], "id": result["id"], "Latitude": ["Latitude"], "Longitude": result["Longitude"], "address": result["address"]} for result in results]
 
     
-    return jsonify(animals_by_location_db)
+    #return jsonify(animals_by_location_db)
 
 if __name__ == '__main__':
     app.run(debug=True)
