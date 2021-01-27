@@ -1,3 +1,17 @@
+//Calling MongoDB Collection
+function optionChanged(dbSelected) {
+  var webApiPath = "";
+  console.log(dbSelected);
+
+  switch (dbSelected) {
+    case "mongodb":
+      webApiPath = "/mongodb-web-api";
+      break;
+    default:
+      console.log("An improper dropdown option has been selected.");
+      return;
+  }
+
 // Creating map object
 
 var myMap = L.map("map", {
@@ -19,30 +33,7 @@ var myMap = L.map("map", {
   console.log(myMap)
   console.log("find a pet")
 
-  function optionChanged(dbSelected) {
-    var webApiPath = "";
-    console.log(dbSelected);
-  
-    switch (dbSelected) {
-      case "mongodb":
-        webApiPath = "/mongodb-web-api";
-        break;
-      default:
-        console.log("An improper dropdown option has been selected.");
-        return;
-    }
 
-// Use this link to get the geojson data.
-// var link = "static/data/animals.json";
-
-// Convert address to lat lon to plot points
-// map.on('geosearch_showlocation', function (result) {
-//     L.marker([result.x, result.y]).addTo(myMap)
-// });
-
-// $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+address, function(data){
-//        console.log(data);
-//     });
 
 //Creating Markers
 for (var i = 0; i < link.length; i++) {
