@@ -11,30 +11,74 @@
 </head>
 
 <body>
-  <div class="wrapper">
-    <div class="top-bar jumbotron text-center">
-      <h1>Rescue Angels</h1>
+
+  <!-- NAVBAR LIST (FULL WIDTH)-->
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <!-- NAVBAR TITLE -->
+    <a class="navbar-brand">Rescue Angels</a>
+
+    <ul class="nav nav-pills nav-fill justify-content-end">
+
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/find-a-pet">Find a Pet</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/breeds">Breeds</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/organizations">Organizations</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/graphs">Graphs</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- NAVBAR END -->
+
+  <!-- Breeds -->
+  <div class="row breeds-row">
+    <!-- Dropdown to choose pet type (Dog or Cat) -->
+    <div>Choose Pet Type
+      <select id="pet-type" onchange="fillDropDown(this.value)">
+        <option value="dogs">Dogs</option>
+        <option value="cats">Cats</option>
+      </select>
     </div>
-    <!-- Dog and Cat options-->
+    <!-- Drop down to select Breed charateristics -->
     <div class="row breeds-row">
-      <div>Choose Pet Type
-        <select id="pet-type" onchange="fillDropDown(this.value)">
-          <option value="dogs">Dogs</option>
-          <option value="cats">Cats</option>
-        </select>
-      </div>
-      <div class="row breeds-row">
       <div>Find Breeds by
         <select id="characteristics" onchange="plotSunburst(this.value)">
         </select>
       </div>
     </div>
     <div class="row breeds-row">
-      <div class="col-md-6 col-sm-6">
+      <!-- Sunburst chart -->
+      <div class="col-md-6 col-sm-6 sunburstBox">
         <div id="sunburst"></div>
       </div>
+      <!-- Breed Information -->
       <div class="col-md-6 col-sm-6">
-        <div><tbody></tbody></div>
+        <table>
+          <tbody id="breedTable"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <div>
+          <table>
+            <tbody id="breedLegend"></tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Breed Scales -->
+      <div class="col-md-6 col-sm-6">
+        <div id="breedScales"></div>
       </div>
     </div>
   </div>
@@ -45,6 +89,7 @@
   </div>
   <script src="https://d3js.org/d3.v6.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
   <script src="../static/js/breeds.js"></script>
 </body>
 

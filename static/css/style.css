@@ -1,4 +1,4 @@
-
+/* Main page */
 canvas {
   display: block;
   width: 100%;
@@ -36,104 +36,49 @@ canvas {
 .dashboard-circles-box {
   display: flex;
   justify-content: left;
-  
   vertical-align: middle;
   text-align: center;
 }
 
-#dashboard-circle1 {
+#dashboard-circle1, #dashboard-circle2, #dashboard-circle3, #dashboard-circle4 {
   height: calc(0.2 * 100vmin); /* 64px at 320 and 256px at 1280 */
   width : calc(0.2 * 100vmin); /* nice responsive sizing */
-  
-
   background-position: center;  /* center image in parent */
   background-repeat: no-repeat; /* prevents repeat of image! */
   background-size: cover;       /* stretch/shrink to fill */
-  background-image: url("../images/pet1.jpg");
-
   border-radius: 50%;
   opacity: 0.4;
-  
 }
-#dashboard-circle1 {
-  height: calc(0.2 * 100vmin); /* 64px at 320 and 256px at 1280 */
-  width : calc(0.2 * 100vmin); /* nice responsive sizing */
-  
 
-  background-position: center;  /* center image in parent */
-  background-repeat: no-repeat; /* prevents repeat of image! */
-  background-size: cover;       /* stretch/shrink to fill */
+#dashboard-circle1 {
   background-image: url("../images/pet1.png");
-
-  border-radius: 50%;
-  opacity: 0.4;
-  
 }
-
 #dashboard-circle2 {
-  height: calc(0.2 * 100vmin); /* 64px at 320 and 256px at 1280 */
-  width : calc(0.2 * 100vmin); /* nice responsive sizing */
-  
-
-  background-position: center;  /* center image in parent */
-  background-repeat: no-repeat; /* prevents repeat of image! */
-  background-size: cover;       /* stretch/shrink to fill */
   background-image: url("../images/pet2.png");
-
-  border-radius: 50%;
-  opacity: 0.4;
-  
 }
 #dashboard-circle3 {
-  height: calc(0.2 * 100vmin); /* 64px at 320 and 256px at 1280 */
-  width : calc(0.2 * 100vmin); /* nice responsive sizing */
-  
-
-  background-position: center;  /* center image in parent */
-  background-repeat: no-repeat; /* prevents repeat of image! */
-  background-size: cover;       /* stretch/shrink to fill */
   background-image: url("../images/pet3.png");
-
-  border-radius: 50%;
-  opacity: 0.4;
-  
 }
 #dashboard-circle4 {
-  height: calc(0.2 * 100vmin); /* 64px at 320 and 256px at 1280 */
-  width : calc(0.2 * 100vmin); /* nice responsive sizing */
-  
-
-  background-position: center;  /* center image in parent */
-  background-repeat: no-repeat; /* prevents repeat of image! */
-  background-size: cover;       /* stretch/shrink to fill */
   background-image: url("../images/graphs.png");
-
-  border-radius: 50%;
-  opacity: 0.4;
-  
 }
-
 #dashboard-circle1:hover {
   opacity: 0.8;
 }
-
 #dashboard-circle2:hover {
   opacity: 0.8;
 }
-
 #dashboard-circle3:hover {
   opacity: 0.8;
 }
-
 #dashboard-circle4:hover {
   opacity: 0.8;
 }
-
 .dashboard-circles-box a {
   text-decoration: none;
 }
 
-#dashboard-menu-item1 {
+#dashboard-menu-item1, #dashboard-menu-item2, #dashboard-menu-item4 {
   padding-top: 55px;
   font-size: xx-large;
   color: black;
@@ -141,13 +86,7 @@ canvas {
   opacity: 1;
   margin: 0;
 }
-#dashboard-menu-item2 {
-  padding-top: 55px;
-  font-size: xx-large;
-  color: black;
-  text-decoration: none;
-  opacity: 1;
-}
+
 #dashboard-menu-item3 {
   padding-top: 60px;
   font-size: x-large;
@@ -155,15 +94,43 @@ canvas {
   text-decoration: none;
   opacity: 1;
 }
-#dashboard-menu-item4 {
-  padding-top: 55px;
-  font-size: xx-large;
-  color: black;
-  text-decoration: none;
-  opacity: 1;
+
+/* Breeds page */
+.sunburstBox {
+  padding-top: 50px;
 }
 
 .breeds-row {
   text-align: center;
-  padding: 20px;
+  padding: 10px;
+}
+
+#breedTable td {
+  text-align: left;
+  padding: 5px;
+}
+
+#breedTable tr td:first-child{
+  min-width: 40%;
+}
+
+.tdHeader {
+  font-weight: bold;
+}
+.breedName {
+  font-size: x-large;
+  margin: 0;
+}
+#breedScales {
+  display: flex;
+  justify-content: left;
+}
+.scalesBar {
+  fill: orange;
+  border-radius: 25px;
+}
+
+#breedLegend td{
+  padding-left: 40px;
+  text-align: left;
 }
