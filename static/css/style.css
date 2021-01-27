@@ -97,7 +97,7 @@ canvas {
 
 /* Breeds page */
 .sunburstBox {
-  padding-top: 50px;
+  padding-top: 13px;
 }
 
 .breeds-row {
@@ -133,4 +133,9 @@ canvas {
 #breedLegend td{
   padding-left: 40px;
   text-align: left;
+}
+#map,
+body,
+html {
+  height: 100%;
 }

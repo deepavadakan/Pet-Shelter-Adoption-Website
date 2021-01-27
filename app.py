@@ -1,18 +1,20 @@
 import numpy as np
+from flask_pymongo import PyMongo
 
 from flask import Flask, jsonify, render_template
-
-
-#################################################
-# Database Setup
-#################################################
-
 
 #################################################
 # Flask Setup
 #################################################
 app = Flask(__name__)
 
+#################################################
+# Database Setup
+#################################################
+# setup mongo connection
+
+app.config["MONGO_URI"] = "mongodb://localhost:27017/rescue_angels_db"
+mongo = PyMongo(app)
 
 #################################################
 # Flask Routes
@@ -24,11 +26,24 @@ def home():
     # Return template and data
     return render_template("index.html")
 
-# route to find pet breeds
-@app.route("/breeds")
-def breeds():
+# route for breeds page
+@app.route("/breeds/")
+@app.route("/breeds/<pet_type>")
+def breeds(pet_type=None):
 
-    return render_template("breeds.html")
+    if pet_type == "dogs":
+        # remove Option ID from each row (Mongo DB's unique identifier)
+        dog_breeds = list(mongo.db.dog_breeds.find({},{'_id': False}))
+        
+        #print(dog_breeds)
+        return jsonify(dog_breeds)
+
+    elif pet_type == "cats":
+        # remove Option ID from each row (Mongo DB's unique identifier)
+        cat_breeds = list(mongo.db.cat_breeds.find({},{'_id': False}))
+        return jsonify(cat_breeds)
+    else:
+        return render_template("breeds.html")
 
 # route to find a pet 
 @app.route("/find-a-pet")
