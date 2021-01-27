@@ -40,9 +40,14 @@ function plotSunburst(selection) {
 
     if (petTypeSelected === "dogs") { //Dogs
         console.log(petTypeSelected);
-        d3.json("/breeds/dogs", function (dogData, err) {
-            if (err) throw err;
-            //d3.csv("../static/data/dog_breeds.csv").then(function (dogData) {
+        d3.json("/breeds/dogs").then( function (err, dogData) {
+        //d3.csv("../static/data/dog_breeds.csv").then(function (dogData) {
+            if (!dogData) {
+                console.log("I wasn't able to get data from the Web API you selected.");
+                return;
+              }
+            if (err) {throw err};
+            
             console.log("dogData");
             console.log(dogData);
             // initialize variables
