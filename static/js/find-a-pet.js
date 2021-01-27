@@ -1,16 +1,4 @@
-//Calling MongoDB Collection
-function optionChanged(dbSelected) {
-  var webApiPath = "";
-  console.log(dbSelected);
 
-  switch (dbSelected) {
-    case "mongodb":
-      webApiPath = "/mongodb-web-api";
-      break;
-    default:
-      console.log("An improper dropdown option has been selected.");
-      return;
-  }
 
 // Creating map object
 
@@ -33,13 +21,27 @@ var myMap = L.map("map", {
   console.log(myMap)
   console.log("find a pet")
 
+  //Calling MongoDB Collection
+function optionChanged(dbSelected) {
+  var webApiPath = "";
+  console.log(dbSelected);
+
+  switch (dbSelected) {
+    case "mongodb":
+      webApiPath = "/mongodb-web-api";
+      break;
+    default:
+      console.log("An improper dropdown option has been selected.");
+      return;
+  }
+
 
 
 //Creating Markers
 for (var i = 0; i < link.length; i++) {
     var id = link[i];
     L.marker(id.name)
-      .bindPopup("<h1>" + id.address + "</h1> <hr> <h3> " + id.id + "</h3>")
+      .bindPopup(id.address + id.id)
       .addTo(myMap);
   }
 
