@@ -40,63 +40,17 @@ def home():
 def breeds(pet_type=None):
 
     if pet_type == "dogs":
-        dog_breeds = list(mongo.db.dog_breeds.find())[0]
-        print(dog_breeds)
+        dog_breeds = list(mongo.db.dog_breeds.find({},{'_id': False}))
+        #db_cursor = mongo.db.dog_breeds.find({},{'_id': False})
+        # for breed in db_cursor:
+        #     dog_breeds.append(breed)
+        #dog_breeds = mongo.db.dog_breeds.find()
+
+        #print(dog_breeds)
         return jsonify(dog_breeds)
-        #print(json.dumps(dog_breeds,default=str))
-        #return  jsonify(json.dumps(dog_breeds,default=str))
-        #return  Response(json.dumps(dog_breeds,default=str),mimetype="application/json")
-        
-        # results = []
-        # for row in dog_breeds:
-        #     results.append(row)
-        # return jsonify(results)
-        
-
-        # Parse results
-        # results_dict = {"breed_name": [],
-        #             "temperment": [],
-        #             "image": [],
-        #             "description": [],
-        #             "akc_rank": [],
-        #             "height": [],
-        #             "height_group": [],
-        #             "weight": [],
-        #             "weight_group": [],
-        #             "life_expectancy": [],
-        #             "group": [],
-        #             "brushing_scale": [],
-        #             "shedding_scale": [],
-        #             "energy_scale": [],
-        #             "trainability_scale": [],
-        #             "temperment_scale": [],
-        #             "color_options": []}
-
-        # for row in dog_breeds:
-        #     results_dict["breed_name"].append(row["breed_name"])
-        #     results_dict["temperment"].append(row["temperment"])
-        #     results_dict["image"].append(row["image"])
-        #     results_dict["description"].append(row["description"])
-        #     results_dict["akc_rank"].append(row["akc_rank"])
-        #     results_dict["height"].append(row["height"])
-        #     results_dict["height_group"].append(row["height_group"])
-        #     results_dict["weight"].append(row["weight"])
-        #     results_dict["weight_group"].append(row["weight_group"])
-        #     results_dict["life_expectancy"].append(row["life_expectancy"])
-        #     results_dict["group"].append(row["group"])
-        #     results_dict["brushing_scale"].append(row["brushing_scale"])
-        #     results_dict["shedding_scale"].append(row["shedding_scale"])
-        #     results_dict["energy_scale"].append(row["energy_scale"])
-        #     results_dict["trainability_scale"].append(row["trainability_scale"])
-        #     results_dict["temperment_scale"].append(row["temperment_scale"])
-        #     results_dict["color_options"].append(row["color_options"])
-        
-        # print(results_dict)
-
-        # return jsonify(results_dict)
 
     elif pet_type == "cats":
-        cat_breeds = list(mongo.db.cat_breeds.find())
+        cat_breeds = list(mongo.db.cat_breeds.find({},{'_id': False}))
         return jsonify(cat_breeds)
     else:
         return render_template("breeds.html")
