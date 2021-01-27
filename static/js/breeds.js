@@ -40,14 +40,14 @@ function plotSunburst(selection) {
 
     if (petTypeSelected === "dogs") { //Dogs
         console.log(petTypeSelected);
-        d3.json("/breeds/dogs").then( function (err, dogData) {
-        //d3.csv("../static/data/dog_breeds.csv").then(function (dogData) {
+        d3.json("/breeds/dogs").then(function (dogData, err) {
+            //d3.csv("../static/data/dog_breeds.csv").then(function (dogData) {
             if (!dogData) {
                 console.log("I wasn't able to get data from the Web API you selected.");
                 return;
-              }
-            if (err) {throw err};
-            
+            }
+            if (err) { throw err };
+
             console.log("dogData");
             console.log(dogData);
             // initialize variables
@@ -119,12 +119,18 @@ function plotSunburst(selection) {
                         }
                     })
                 })
-        }).catch(function(error) {
+        }).catch(function (error) {
             console.log(error);
-          });
+        });
     } else { //Cats
-        d3.json('/breeds/cats'), (catData) => {
+        d3.json("/breeds/cats").then(function (catData, err) {
             // d3.csv("../static/data/cat_breeds.csv").then(function (catData) {
+            if (!catData) {
+                console.log("I wasn't able to get data from the Web API you selected.");
+                return;
+            }
+            if (err) { throw err };
+
 
             console.log(catData);
             // intialize variables
@@ -199,8 +205,9 @@ function plotSunburst(selection) {
                         }
                     })
                 })
-            //});
-        };
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 }
 
