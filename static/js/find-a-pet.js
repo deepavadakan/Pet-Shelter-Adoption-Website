@@ -5,7 +5,8 @@ var myMap = L.map("map", {
 });
 console.log(myMap)
 
-var markers;
+// Create a marker cluster group
+var markers = L.markerClusterGroup();
 
 // Adding a tile layer (the background map image) to our map
 // We use the addTo method to add objects to our map
@@ -54,11 +55,10 @@ function optionChanged(dbSelected) {
 
     //Creating Markers
     for (var i = 0; i < webAPIData.length; i++) {
-      var id = webAPIData[i];
-      markers = L.marker([id.Latitude, id.Longitude])
-        .bindPopup(`<strong>Name: </strong>${id.name}<hr><strong>Breed: </strong>${id.breed}<br><strong>Link: </strong><a href='${id.url}' target='_blank'>Find me!</a>`)
-        .addTo(myMap);
+      var petInfo = webAPIData[i];
+      markers.addLayer(L.marker([petInfo.Latitude, petInfo.Longitude])
+          .bindPopup(`<strong>Name: </strong>${petInfo.name}<hr><strong>Breed: </strong>${petInfo.breed}<br><a href='${petInfo.url}' target='_blank'>Find me!</a>`));  
     }
-
+    myMap.addLayer(markers);
   });
 }
