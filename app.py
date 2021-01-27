@@ -53,7 +53,7 @@ def graphs():
 @app.route("/mongodb-web-api")
 def mongodb_web_api():
     #client = MongoClient('localhost', 27017)
-    client = MongoClient(localhost27017)
+    client = MongoClient(localhost, 27017)
 
     db = client[rescue_angels_db]
 
