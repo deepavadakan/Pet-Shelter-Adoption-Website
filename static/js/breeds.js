@@ -9,14 +9,14 @@ var catCharacteristics = ["Weight", "Coat Length", "Playfullness"];
 var petTypeSelected;
 
 // functions to run when page loads
-d3.select(window).on("load", fillDropDown('dogs'));
+d3.select(window).on("load", fillDropDown('Dogs'));
 
 // function to fill dropdown list of Dog or Cat Characteristics
 function fillDropDown(petType) {
     petTypeSelected = petType;
     console.log(petTypeSelected);
     dropDownCharacteristics.html("");
-    if (petType === "dogs") {
+    if (petType === "Dogs") {
         dogCharacteristics.forEach(item => {
             dropDownCharacteristics.append("option").text(item).attr("value", item);
         });
@@ -33,23 +33,27 @@ function fillDropDown(petType) {
 function plotSunburst(selection) {
     console.log(selection);
 
-    // find the tbody element for legend table
-    var tbody = d3.select("#breedLegend");
-    // first clear the legend table of existing data
-    tbody.html("");
+    // clear the legend table of existing data
+    d3.select("#breedLegend").html("");
+    
+    // clear the breed info table of existing data
+    d3.select("#breedTable").html("");
+    
+    // clear scales
+    d3.select("#breedScales").html("")
+    
 
-    if (petTypeSelected === "dogs") { //Dogs
+    if (petTypeSelected === "Dogs") { //Dogs
         console.log(petTypeSelected);
         d3.json("/breeds/dogs").then(function (dogData, err) {
             //d3.csv("../static/data/dog_breeds.csv").then(function (dogData) {
+            if (err) { throw err };
             if (!dogData) {
                 console.log("I wasn't able to get data from the Web API you selected.");
                 return;
             }
-            if (err) { throw err };
-
-            console.log("dogData");
-            console.log(dogData);
+            
+            //console.log(dogData);
             // initialize variables
             var ids = [];
             var labels = [];
@@ -105,7 +109,13 @@ function plotSunburst(selection) {
                 responsive: true
             }
 
-            var layout = { margin: { l: 0, r: 0, b: 0, t: 0 } }
+            var layout = {
+                title: `${petTypeSelected} grouped by ${selection}`,
+                autoresize: true,
+                font: { size: 16 },
+                margin: { l: 0, r: 0, b: 0, t: 40 },
+                showlegend: true
+            }
 
             // Render the plot to the div tag with id "sunburst"
             Plotly.newPlot('sunburst', data, layout, config)
@@ -125,14 +135,13 @@ function plotSunburst(selection) {
     } else { //Cats
         d3.json("/breeds/cats").then(function (catData, err) {
             // d3.csv("../static/data/cat_breeds.csv").then(function (catData) {
+            if (err) { throw err };
             if (!catData) {
                 console.log("I wasn't able to get data from the Web API you selected.");
                 return;
             }
-            if (err) { throw err };
 
-
-            console.log(catData);
+            //console.log(catData);
             // intialize variables
             var ids = [];
             var labels = [];
@@ -190,7 +199,10 @@ function plotSunburst(selection) {
             }
 
             var layout = {
-                margin: { l: 0, r: 0, b: 0, t: 0 },
+                title: `${petTypeSelected} grouped by ${selection}`,
+                autoresize: true,
+                font: { size: 16 },
+                margin: { l: 0, r: 0, b: 0, t: 40 },
                 showlegend: true
             }
 
@@ -226,7 +238,7 @@ function displayDogBreedInfo(breedData, selBreed) {
 
     console.log(selBreedData);
 
-    // display the data requested
+    // display the breed info
     // breed name
     tbody.append("tr").append("td")
         .attr("colspan", 2)
@@ -379,7 +391,7 @@ function displayCatBreedInfo(breedData, selBreed) {
 
     console.log(selBreedData);
 
-    // display the data requested
+    // display the breed info
     // breed name
     tbody.append("tr").append("td")
         .attr("colspan", 2)

@@ -1,27 +1,19 @@
 import numpy as np
 from flask_pymongo import PyMongo
-import json
 
-from flask import Flask, jsonify, render_template, Response
-
-
-#################################################
-# Database Setup
-#################################################
-# setup mongo connection
-#conn = "mongodb://localhost:27017"
-#client = pymongo.MongoClient(conn)
-
-
-
+from flask import Flask, jsonify, render_template
 
 #################################################
 # Flask Setup
 #################################################
 app = Flask(__name__)
 
-app.config["MONGO_URI"] = "mongodb://localhost:27017/rescue_angels_db"
+#################################################
+# Database Setup
+#################################################
+# setup mongo connection
 
+app.config["MONGO_URI"] = "mongodb://localhost:27017/rescue_angels_db"
 mongo = PyMongo(app)
 
 #################################################
@@ -40,16 +32,14 @@ def home():
 def breeds(pet_type=None):
 
     if pet_type == "dogs":
+        # remove Option ID from each row (Mongo DB's unique identifier)
         dog_breeds = list(mongo.db.dog_breeds.find({},{'_id': False}))
-        #db_cursor = mongo.db.dog_breeds.find({},{'_id': False})
-        # for breed in db_cursor:
-        #     dog_breeds.append(breed)
-        #dog_breeds = mongo.db.dog_breeds.find()
-
+        
         #print(dog_breeds)
         return jsonify(dog_breeds)
 
     elif pet_type == "cats":
+        # remove Option ID from each row (Mongo DB's unique identifier)
         cat_breeds = list(mongo.db.cat_breeds.find({},{'_id': False}))
         return jsonify(cat_breeds)
     else:
