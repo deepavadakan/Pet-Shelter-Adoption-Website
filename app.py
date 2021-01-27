@@ -1,6 +1,7 @@
 import numpy as np
 
 from flask import Flask, jsonify, render_template
+from pymongo import MongoClient 
 
 
 #################################################
@@ -47,6 +48,24 @@ def organizations():
 def graphs():
 
     return render_template("graphs.html")
+
+# Route that will return Web API JSON data from MongoDB
+@app.route("/mongodb-web-api")
+def mongodb_web_api():
+    #client = MongoClient('localhost', 27017)
+    client = MongoClient(localhost27017)
+
+    db = client[rescue_angels_db]
+
+    collection = db[org_collection]
+
+    results = collection.find()
+    
+    #results is a cursor object, when looping through it each result is a dictionary
+    animals_by_location_db = [ {"name": result["name"], "id": result["id"], "address_address1": result["address_address1"]} for result in results]
+
+    
+    return jsonify(animals_by_location_db)
 
 if __name__ == '__main__':
     app.run(debug=True)

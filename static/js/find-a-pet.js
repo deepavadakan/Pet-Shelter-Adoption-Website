@@ -19,6 +19,19 @@ var myMap = L.map("map", {
   console.log(myMap)
   console.log("find a pet")
 
+  function optionChanged(dbSelected) {
+    var webApiPath = "";
+    console.log(dbSelected);
+  
+    switch (dbSelected) {
+      case "mongodb":
+        webApiPath = "/mongodb-web-api";
+        break;
+      default:
+        console.log("An improper dropdown option has been selected.");
+        return;
+    }
+
 // Use this link to get the geojson data.
 // var link = "static/data/animals.json";
 
@@ -31,11 +44,13 @@ var myMap = L.map("map", {
 //        console.log(data);
 //     });
 
-// Creating Markers
-// for (var i = 0; i < link.length; i++) {
-//     var id = link[i];
-//     L.marker(id.address)
-//       .bindPopup("<h1>" + id.name + "</h1> <hr> <h3>breeds " + id.breeds + "</h3>")
-//       .addTo(myMap);
-//   }
+//Creating Markers
+for (var i = 0; i < link.length; i++) {
+    var id = link[i];
+    L.marker(id.name)
+      .bindPopup("<h1>" + id.address + "</h1> <hr> <h3> " + id.id + "</h3>")
+      .addTo(myMap);
+  }
+
+  };
     
