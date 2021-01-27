@@ -48,13 +48,21 @@ def breeds(pet_type=None):
 
 # route to find a pet 
 @app.route("/find-a-pet")
-@app.route("/find-a-pet/<options>")
-def find_a_pet(options=None):
+@app.route("/find-a-pet/<petType>")
+@app.route("/find-a-pet/<petType>/<breed>")
+def find_a_pet(petType=None, breed=None):
 
-    if ((options == "Dog") | (options == "Cat")):
-        results = list(mongo.db.final_data.find( { "type": options } ))
+    # petType is cat or dog
+    if ((petType == "Dog") | (petType == "Cat")):
+        print (petType)
+        if (breed):
+            # find all pets for given pet type and breed
+            results = list(mongo.db.final_data.find( { "type": petType,  "breeds_primary": breed} ))
+        else:
+            print("petType"+ petType)
+            results = list(mongo.db.final_data.find( { "type": petType } ))
         
-        #results is a cursor object, when looping through it each result is a dictionary
+        #loop through results to retrieve the fields needed
         animals_by_pettype = [ {"name": result["name_x"], 
             #"photo": result["primary_photo_cropped_small"], 
             "breed": result["breeds_primary"], 
@@ -64,6 +72,17 @@ def find_a_pet(options=None):
         return jsonify(animals_by_pettype)
     else:
         return render_template("find-a-pet.html")
+
+@app.route("/pet-breeds-list")
+@app.route("/pet-breeds-list/<petType>")
+def pet_breeds(petType=None):
+
+    if (petType != None):
+         
+        breeds_list = list(mongo.db.final_data.distinct( "breeds_primary" , { "type" : petType } ))
+        return jsonify(breeds_list)
+    else:
+        return jsonify("")
 
 # route to find organization s
 @app.route("/organizations")

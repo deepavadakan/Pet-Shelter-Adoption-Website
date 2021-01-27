@@ -8,6 +8,8 @@ console.log(myMap)
 // Create a marker cluster group
 var markers = L.markerClusterGroup();
 
+var petTypeSelected = "Dog";
+
 // Adding a tile layer (the background map image) to our map
 // We use the addTo method to add objects to our map
 L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -21,44 +23,79 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 console.log(myMap)
 console.log("find a pet")
 
-optionChanged("Dog");
+optionChanged(petTypeSelected);
 
 //Calling MongoDB Collection
-function optionChanged(dbSelected) {
-  var webApiPath = "/find-a-pet/" + dbSelected;
-  console.log(dbSelected);
+function optionChanged(petSelected) {
+  petTypeSelected = petSelected;
 
-  // switch (dbSelected) {
+  fillBreedsDropdown(petSelected);
+  var webApiPath = "/find-a-pet/" + petSelected;
+  console.log(petSelected);
+
+  // switch (petSelected) {
   //   case "mongodb":
   //     webApiPath = "/mongodb-web-api";
   //     break;
-  //   case "Dogs":
-  //     webApiPath = "/find-a-pet/dogs";
-  //     break;
-  //   case "Cats":
-  //       webApiPath = "/find-a-pet/cats";
-  //       break;
   //   default:
   //     console.log("An improper dropdown option has been selected.");
   //     return;
   // }
 
+  // Draw markers 
+  drawMarkers(webApiPath);
+  
+}
 
-  d3.json(webApiPath).then(function (webAPIData, err) {
+function drawMarkers (url) {
+  d3.json(url).then(function (webAPIData, err) {
     if (err) { throw err };
     if (!webAPIData) {
         console.log("I wasn't able to get data from the Web API you selected.");
         return;
     }
 
-    //console.log(webAPIData);
+    console.log(webAPIData);
 
-    //Creating Markers
+    // First clear existing markers
+    markers.clearLayers();
+
+    // Creating Markers
     for (var i = 0; i < webAPIData.length; i++) {
       var petInfo = webAPIData[i];
       markers.addLayer(L.marker([petInfo.Latitude, petInfo.Longitude])
           .bindPopup(`<strong>Name: </strong>${petInfo.name}<hr><strong>Breed: </strong>${petInfo.breed}<br><a href='${petInfo.url}' target='_blank'>Find me!</a>`));  
     }
+    // add markers to map
     myMap.addLayer(markers);
   });
+}
+
+// function to fill the breeds drop down list based on pet selected
+function fillBreedsDropdown(petSelected) {
+  var url = `/pet-breeds-list/${petSelected}`;
+  d3.json(url).then(function (breedData, err) {
+    if (err) { throw err };
+    if (!breedData) {
+        console.log("I wasn't able to get data from the Web API you selected.");
+        return;
+    }
+
+    // console.log(breedData);
+
+    var dropDownBreeds = d3.select('#pet-breed');
+    dropDownBreeds.html("");
+   
+    breedData.forEach(item => {
+      dropDownBreeds.append("option").text(item).attr("value", item);
+    });
+  });
+  
+}
+
+function findPetsByBreed(petBreed) {
+  
+  var webApiPath = "/find-a-pet/" + petTypeSelected + "/" + petBreed;
+  console.log(petBreed);
+  drawMarkers(webApiPath);
 }
