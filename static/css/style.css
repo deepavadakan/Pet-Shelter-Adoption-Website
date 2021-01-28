@@ -51,13 +51,13 @@ canvas {
 }
 
 #dashboard-circle1 {
-  background-image: url("../images/pet1.png");
+  background-image: url("../images/pet3.png");
 }
 #dashboard-circle2 {
-  background-image: url("../images/pet2.png");
+  background-image: url("../images/pet1.png");
 }
 #dashboard-circle3 {
-  background-image: url("../images/pet3.png");
+  background-image: url("../images/pet2.png");
 }
 #dashboard-circle4 {
   background-image: url("../images/graphs.png");
@@ -78,8 +78,8 @@ canvas {
   text-decoration: none;
 }
 
-#dashboard-menu-item1, #dashboard-menu-item2, #dashboard-menu-item4 {
-  padding-top: 55px;
+#dashboard-menu-item1, #dashboard-menu-item2, #dashboard-menu-item3, #dashboard-menu-item4 {
+  padding-top: 50px;
   font-size: xx-large;
   color: black;
   text-decoration: none;
@@ -87,12 +87,14 @@ canvas {
   margin: 0;
 }
 
+#dashboard-menu-item1{
+  padding-top: 35px;
+  font-size: xx-large;
+}
+
 #dashboard-menu-item3 {
   padding-top: 60px;
   font-size: x-large;
-  color: black;
-  text-decoration: none;
-  opacity: 1;
 }
 /* --------- Main page ---------- */
 /* --------- Nav Bar ---------- */
