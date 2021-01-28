@@ -54,7 +54,7 @@ def find_a_pet(petType=None, breed=None):
 
     # petType is cat or dog
     if ((petType == "Dog") | (petType == "Cat")):
-        print (petType)
+        # if breed info is passed
         if (breed):
             # find all pets for given pet type and breed
             results = list(mongo.db.final_data.find( { "type": petType,  "breeds_primary": breed} ))
@@ -62,23 +62,26 @@ def find_a_pet(petType=None, breed=None):
             print("petType"+ petType)
             results = list(mongo.db.final_data.find( { "type": petType } ))
         
-        #loop through results to retrieve the fields needed
+        # loop through results to retrieve the fields required
         animals_by_pettype = [ {"name": result["name_x"], 
-            #"photo": result["primary_photo_cropped_small"], 
+            "photo": str(result["primary_photo_cropped_small"]), 
             "breed": result["breeds_primary"], 
             "Latitude": result["Latitude"], 
             "Longitude": result["Longitude"], 
-            "url": result["url_x"]} for result in results]
+            "url": result["url_x"],
+            "description": str(result["description"])} for result in results]
         return jsonify(animals_by_pettype)
     else:
+        # render the find-a-pet page
         return render_template("find-a-pet.html")
 
+# route to find all existing breeds for a given pet type
 @app.route("/pet-breeds-list")
 @app.route("/pet-breeds-list/<petType>")
 def pet_breeds(petType=None):
 
     if (petType != None):
-         
+        # find the primary breed of all pets for selected pet type 
         breeds_list = list(mongo.db.final_data.distinct( "breeds_primary" , { "type" : petType } ))
         return jsonify(breeds_list)
     else:
@@ -95,24 +98,6 @@ def organizations():
 def graphs():
 
     return render_template("graphs.html")
-
-# Route that will return Web API JSON data from MongoDB
-@app.route("/mongodb-web-api")
-def mongodb_web_api():
-    client = MongoClient('localhost', 27017)
-    # client = MongoClient(localhost, 27017)
-    
-    # db = client[rescue_angels_db]
-
-    # collection = db[org_new]
-
-    # results = collection.find()
-
-    # #results is a cursor object, when looping through it each result is a dictionary
-    # animals_by_location_db = [ {"name": result["name"], "id": result["id"], "Latitude": ["Latitude"], "Longitude": result["Longitude"], "address": result["address"]} for result in results]
-
-    
-    #return jsonify(animals_by_location_db)
 
 if __name__ == '__main__':
     app.run(debug=True)
