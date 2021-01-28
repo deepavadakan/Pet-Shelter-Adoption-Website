@@ -91,7 +91,7 @@ function fillBreedsDropdown(petSelected) {
     // Clear drop down
     dropDownBreeds.html("");
     // First entry to be blank
-    dropDownBreeds.append("option").text("").attr("value", "Nan");
+    dropDownBreeds.append("option").text("Select a Breed").attr("value", "Nan");
     breedData.forEach(item => {
       dropDownBreeds.append("option").text(item).attr("value", item);
     });
