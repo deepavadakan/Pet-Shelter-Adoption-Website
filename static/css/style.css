@@ -1,4 +1,4 @@
-/* Main page */
+/* --------- Main page ---------- */
 canvas {
   display: block;
   width: 100%;
@@ -51,13 +51,13 @@ canvas {
 }
 
 #dashboard-circle1 {
-  background-image: url("../images/pet1.png");
+  background-image: url("../images/pet3.png");
 }
 #dashboard-circle2 {
-  background-image: url("../images/pet2.png");
+  background-image: url("../images/pet1.png");
 }
 #dashboard-circle3 {
-  background-image: url("../images/pet3.png");
+  background-image: url("../images/pet2.png");
 }
 #dashboard-circle4 {
   background-image: url("../images/graphs.png");
@@ -78,8 +78,8 @@ canvas {
   text-decoration: none;
 }
 
-#dashboard-menu-item1, #dashboard-menu-item2, #dashboard-menu-item4 {
-  padding-top: 55px;
+#dashboard-menu-item1, #dashboard-menu-item2, #dashboard-menu-item3, #dashboard-menu-item4 {
+  padding-top: 50px;
   font-size: xx-large;
   color: black;
   text-decoration: none;
@@ -87,17 +87,43 @@ canvas {
   margin: 0;
 }
 
+#dashboard-menu-item1{
+  padding-top: 35px;
+  font-size: xx-large;
+}
+
 #dashboard-menu-item3 {
   padding-top: 60px;
   font-size: x-large;
-  color: black;
-  text-decoration: none;
-  opacity: 1;
+}
+/* --------- Main page ---------- */
+/* --------- Nav Bar ---------- */
+
+.navbar {
+  padding: 0px;
+  border-bottom: 5px solid rgb(0, 128, 111);
+  margin-bottom: 20px;
+}
+.navbar-brand {
+  color: white    !important; 
+  background-color: rgb(0, 128, 111);
+  color-adjust: white;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 25px;
+  font-weight: bolder;
 }
 
-/* Breeds page */
+.nav-link {
+  color:rgb(0, 128, 111);
+  font-size: 20px
+}
+/* --------- Nav Bar ---------- */
+
+/* --------- Breeds page ---------- */
 .sunburstBox {
-  padding-top: 50px;
+  padding-top: 13px;
 }
 
 .breeds-row {
@@ -134,3 +160,17 @@ canvas {
   padding-left: 40px;
   text-align: left;
 }
+/* --------- Breeds page ---------- */
+
+/* --------- Find a Pet page ---------- */
+#map,
+body,
+html {
+  height: 100%;
+}
+
+.find-a-pet-row {
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+/* --------- Find a Pet page ---------- */

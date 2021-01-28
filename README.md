@@ -55,16 +55,12 @@
 * [Petpy](https://pypi.org/project/petpy/)
 
 ## Setup
-0) Base Authorization Code [Python]
-1) Collect Animal Data from API ("Get Animals" Call) [Python]
-2) Collect Animal Types Data from API ("Get Animal Types" Call) [Python]
-3) Collect Organization Data from API ("Get Organization" Call) [Python]
-4) Place Data into a MongoDB Database [Python]
-5) Create a FLASK HTML/CSS App [Python/ HTML]
-6) Create a Web API using the FLASK App [Python]
-7) Create Javascript that calls the Web API Data [JS]
-8) Create USA Map on Organization & Animal locations for adoption [JS/ HTML]
-9) Create a Visual Sunburst chart on Breed Information [JS/HTML]
+0) install `pip install petpy` to your environment
+1) set up a local config.py file with your PetFinder.com `API_KEY` and `API_SECRET`
+2) set up a config.js file with your `MAPBOX_API_KEY` within "static/js" folder
+3) Run Files ```AKC_Scraping/dog_breeds_mongo_db.ipynb``` and ```Cat_breeds_scrape/cat_breeds_mongo_db.ipynb``` to collect the data and place in a local MongoDB
+4) Run and RESTART the Kernal from File ```create_collections.ipynb```
+5)Run `python app.py` to open the flask web application
 
 ## Code Examples
 `comming soon!`
