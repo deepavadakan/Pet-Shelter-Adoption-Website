@@ -2,6 +2,7 @@ import numpy as np
 from flask_pymongo import PyMongo
 
 from flask import Flask, jsonify, render_template
+from pymongo import MongoClient 
 
 #################################################
 # Flask Setup
@@ -47,9 +48,44 @@ def breeds(pet_type=None):
 
 # route to find a pet 
 @app.route("/find-a-pet")
-def find_a_pet():
+@app.route("/find-a-pet/<petType>")
+@app.route("/find-a-pet/<petType>/<breed>")
+def find_a_pet(petType=None, breed=None):
 
-    return render_template("find-a-pet.html")
+    # petType is cat or dog
+    if ((petType == "Dog") | (petType == "Cat")):
+        # if breed info is passed
+        if (breed):
+            # find all pets for given pet type and breed
+            results = list(mongo.db.final_data.find( { "type": petType,  "breeds_primary": breed} ))
+        else:
+            print("petType"+ petType)
+            results = list(mongo.db.final_data.find( { "type": petType } ))
+        
+        # loop through results to retrieve the fields required
+        animals_by_pettype = [ {"name": result["name_x"], 
+            "photo": str(result["primary_photo_cropped_small"]), 
+            "breed": result["breeds_primary"], 
+            "Latitude": result["Latitude"], 
+            "Longitude": result["Longitude"], 
+            "url": result["url_x"],
+            "description": str(result["description"])} for result in results]
+        return jsonify(animals_by_pettype)
+    else:
+        # render the find-a-pet page
+        return render_template("find-a-pet.html")
+
+# route to find all existing breeds for a given pet type
+@app.route("/pet-breeds-list")
+@app.route("/pet-breeds-list/<petType>")
+def pet_breeds(petType=None):
+
+    if (petType != None):
+        # find the primary breed of all pets for selected pet type 
+        breeds_list = list(mongo.db.final_data.distinct( "breeds_primary" , { "type" : petType } ))
+        return jsonify(breeds_list)
+    else:
+        return jsonify("")
 
 # route to find organization s
 @app.route("/organizations")
