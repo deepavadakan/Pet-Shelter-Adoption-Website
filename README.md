@@ -59,10 +59,8 @@
 1) set up a local config.py file with your PetFinder.com `API_KEY` and `API_SECRET`
 2) set up a config.js file with your `MAPBOX_API_KEY` within "static/js" folder
 3) Run Files ```AKC_Scraping/dog_breeds_mongo_db.ipynb``` and ```Cat_breeds_scrape/cat_breeds_mongo_db.ipynb``` to collect the data and place in a local MongoDB
-4) Run File ```create_collections.ipynb```
-----) *Error!* "ValueError: The column label 'organization_id' is not unique."
-
-?)Run `python app.py` to open the flask web application
+4) Run and RESTART the Kernal from File ```create_collections.ipynb```
+5)Run `python app.py` to open the flask web application
 
 ## Code Examples
 `comming soon!`
