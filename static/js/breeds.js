@@ -264,7 +264,7 @@ function displayDogBreedInfo(breedData, selBreed) {
     var tr = tbody.append("tr");
     tr.append("td")
         .classed("tdHeader", true)
-        .text("rank: ");
+        .text("Rank: ");
     tr.append("td").text(selBreedData.akc_rank.replace("Ranks ", ""));
     // life expectancy
     var tr = tbody.append("tr");
