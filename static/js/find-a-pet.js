@@ -8,9 +8,6 @@ console.log(myMap)
 // Create a marker cluster group
 var markers = L.markerClusterGroup();
 
-// Initialize variables
-var petTypeSelected = "Dog";
-
 // Adding a tile layer (the background map image) to our map
 L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
@@ -21,30 +18,21 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: MAPBOX_API_KEY
 }).addTo(myMap);
 console.log(myMap)
-console.log("find a pet")
 
 // function to run when page loads
-d3.select(window).on("load", optionChanged('Dog'));
+d3.select(window).on("load", findPets('Dog'));
 
-//Calling MongoDB Collection
-function optionChanged(petSelected) {
-  petTypeSelected = petSelected;
-
+// Find pets for given selection
+function findPets(petSelected) {
   // Call function to fill breeds drop down list
   fillBreedsDropdown(petSelected);
 
-  // route to find pets for selected pet type
-  var webApiPath = "/find-a-pet/" + petSelected;
-  console.log(petSelected);
+  // Call function to fill breeds drop down list
+  fillAgeDropdown(petSelected);
 
-  // switch (petSelected) {
-  //   case "mongodb":
-  //     webApiPath = "/mongodb-web-api";
-  //     break;
-  //   default:
-  //     console.log("An improper dropdown option has been selected.");
-  //     return;
-  // }
+  // route to find pets for selected pet type
+  var webApiPath = "/find-a-pet/" + petSelected + "/null/null";
+  console.log(petSelected);
 
   // Call function to draw markers 
   drawMarkers(webApiPath);
@@ -91,7 +79,7 @@ function fillBreedsDropdown(petSelected) {
     // Clear drop down
     dropDownBreeds.html("");
     // First entry to be blank
-    dropDownBreeds.append("option").text("Select a Breed").attr("value", "Nan");
+    dropDownBreeds.append("option").text("Select a Breed").attr("value", "null");
     breedData.forEach(item => {
       dropDownBreeds.append("option").text(item).attr("value", item);
     });
@@ -99,11 +87,38 @@ function fillBreedsDropdown(petSelected) {
   
 }
 
-// Function to find pets by pet type and breed
-function findPetsByBreed(petBreed) {  
-  // route to find pets by breed
-  var webApiPath = "/find-a-pet/" + petTypeSelected + "/" + petBreed;
-  // console.log(petBreed);
+// function to fill the breeds drop down list based on pet selected
+function fillAgeDropdown(petSelected) {
+
+  var ageData = [{"text":"Baby", "value":"Baby"},
+                {"text":"Young", "value":"Young"},
+                {"text":"Adult", "value":"Adult"},
+                {"text":"Senior", "value":"Senior"}]
+  // element for breeds drop down list
+  var dropDownAge = d3.select('#pet-age');
+  // Clear drop down
+  dropDownAge.html("");
+  // First entry to be blank
+  dropDownAge.append("option").text("Select Age").attr("value", "null");
+  ageData.forEach(item => {
+    dropDownAge.append("option").text(item.text).attr("value", item.value);
+  });
+}
+
+// Function to find pets by selected option
+function findPetsByOption(petOption) {  
+  console.log(petOption);
+  // find pet type selected
+  var petTypeSelected =  d3.select('#pet-type').node().value;
+  console.log(petTypeSelected);
+  // find pet breed selected
+  var petBreed =  d3.select('#pet-breed').node().value;
+  console.log(petBreed);
+  // find pet age selected
+  var petAge =  d3.select('#pet-age').node().value;
+  console.log(petAge);
+  
+  var webApiPath = "/find-a-pet/" + petTypeSelected + "/" + petBreed + "/" + petAge;
   // Call function to draw markers
   drawMarkers(webApiPath);
 }

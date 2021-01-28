@@ -50,17 +50,23 @@ def breeds(pet_type=None):
 @app.route("/find-a-pet")
 @app.route("/find-a-pet/<petType>")
 @app.route("/find-a-pet/<petType>/<breed>")
-def find_a_pet(petType=None, breed=None):
+@app.route("/find-a-pet/<petType>/<breed>/<age>")
+def find_a_pet(petType=None, breed=None, age=None):
 
     # petType is cat or dog
     if ((petType == "Dog") | (petType == "Cat")):
-        # if breed info is passed
-        if (breed):
+        if ((breed == "null") & (age == "null")):
+            # find all pets for given pet type
+            results = list(mongo.db.final_data.find( { "type": petType} ))
+        elif (breed == "null"):
+            # find all pets for given pet type and age
+            results = list(mongo.db.final_data.find( { "type": petType,  "age": age} ))
+        elif (age == "null"):
             # find all pets for given pet type and breed
             results = list(mongo.db.final_data.find( { "type": petType,  "breeds_primary": breed} ))
         else:
-            print("petType"+ petType)
-            results = list(mongo.db.final_data.find( { "type": petType } ))
+            # find all pets for given pet type, breed and age
+            results = list(mongo.db.final_data.find( { "type": petType,  "breeds_primary": breed, "age": age} ))
         
         # loop through results to retrieve the fields required
         animals_by_pettype = [ {"name": result["name_x"], 
