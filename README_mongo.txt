@@ -18,3 +18,6 @@ This code will create a dog_breeds mongo db collection containing all the dog br
 This code will create a cat_breeds mongo db collection containing all the cat breed information. 
 * Dependant file: cat_breeds_all_clean.csv
 ** Do not run any of the other notebooks in Cat_breeds_scrape folder. 
+
+Update - 1/28/2021
+Add config.js in static/js folder. It should contain MAPBOX_API_KEY which has the API Key for map box.
