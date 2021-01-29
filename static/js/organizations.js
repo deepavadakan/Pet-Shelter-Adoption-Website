@@ -2,13 +2,18 @@
 
 var data;
 
+var adultPetColor = '#6D98BA';
+var otherPetColor = '#EEC170';
+
 var colorScale = {
   'Adult Dogs': '#EEC170',
 };
 
 function addMarkers() {
   data.forEach(function (d) {
-    var marker = L.circleMarker([+d.Latitude, +d.Longitude]);
+    console.log(d);
+    var marker = L.circleMarker([+d.Latitude, +d.Longitude])
+      .bindPopup(`<strong>Organization: </strong> <a href='${d.url_y}' target='_blank'>${d.name_y}</a><br><strong>Number of adoptable pets: </strong>${d["# of adoptable pets"]}<br><strong>Median pet age: </strong>${d.age}`);  ;
     var adult_dog = d.age === 'Adult';
     var color = colorScale[d.deviceControllerName] || '#6D98BA';
     if (adult_dog) {
@@ -22,7 +27,7 @@ function addMarkers() {
     } else {
       marker.setStyle({
         radius: 8,
-        fillColor: '#EEC170',
+        fillColor: otherPetColor,
         fillOpacity: 0.5,
         color: '#123',
         weight: 1
@@ -58,9 +63,26 @@ console.log(myMap)
 d3.csv('/static/data/hexbin_data.csv')
   .then(function (csv) {
     data = csv;
-    addMarkers();S
+    addMarkers();
   });
 
 
 // Adding legend
 
+var legend = L.control({ position: 'topright' });
+
+legend.onAdd = function (myMap) {
+  // create div for legend
+  var div = L.DomUtil.create('div', 'info legend');
+
+  // add title for legend
+  div.innerHTML = '<h4>Legend</h4>';
+
+  div.innerHTML += '<i style="background:' + adultPetColor + '"></i> Adult Pet<br>';
+  div.innerHTML += '<i style="background:' + otherPetColor + '"></i> Other Pet<br>';
+ 
+  return div;
+}
+
+// Adding legend to the map
+legend.addTo(myMap);
