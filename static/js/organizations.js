@@ -1,5 +1,5 @@
 // Creating map object
-var myMap = L.map("map", {
+var myMap = L.map("hexbin-map", {
     center: [39.502754, -98.452221],
     zoom: 5
   });
@@ -15,6 +15,6 @@ var myMap = L.map("map", {
     maxZoom: 18,
     zoomOffset: -1,
     id: "mapbox/streets-v11",
-    accessToken: 'pk.eyJ1IjoiZGFuc3dpY2siLCJhIjoiY2l1dTUzcmgxMDJ0djJ0b2VhY2sxNXBiMyJ9.25Qs4HNEkHubd4_Awbd8Og'
+    accessToken: MAPBOX_API_KEY
   }).addTo(myMap);
   console.log(myMap)
