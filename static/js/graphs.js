@@ -221,8 +221,8 @@ d3.json("/dogs-by-sex").then(function (dogData, err) {
     });
 });
 
-d3.json("/find-a-pet/Dog").then(function (dogData, err) {
-    d3.json("/find-a-pet/Cat").then(function (catData, err) {
+d3.json("/find-a-pet/Dog/null/null").then(function (dogData, err) {
+    d3.json("/find-a-pet/Cat/null/null").then(function (catData, err) {
         if (err) { throw err };
 
         dogs_breed_array = []
