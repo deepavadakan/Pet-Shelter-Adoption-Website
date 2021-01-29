@@ -97,13 +97,49 @@ def pet_breeds(petType=None):
 @app.route("/organizations")
 def organizations():
 
-    return render_template("organizations.html")
+    return render_template("organizations.html");
 
 # route to find a pet 
 @app.route("/graphs")
 def graphs():
 
-    return render_template("graphs.html")
+    return render_template("graphs.html");
+
+@app.route("/dogs-by-state")
+def dogs_by_state():
+    dog_states = list(mongo.db.final_data.find({"type":"Dog"},{"contact_address_state":1,"_id":0}))
+
+    return jsonify(dog_states);
+
+@app.route("/cats-by-state")
+def cats_by_state():
+    cat_states = list(mongo.db.final_data.find({"type":"Cat"},{"contact_address_state":1,"_id":0}))
+
+    return jsonify(cat_states);
+
+@app.route("/cats-by-age")
+def cats_by_age():
+    cat_ages = list(mongo.db.final_data.find({"type":"Cat"},{"age":1,"_id":0}))
+
+    return jsonify(cat_ages);
+
+@app.route("/dogs-by-age")
+def dogs_by_age():
+    dog_ages = list(mongo.db.final_data.find({"type":"Dog"},{"age":1,"_id":0}))
+
+    return jsonify(dog_ages);
+
+@app.route("/dogs-by-sex")
+def dogs_by_sex():
+    dog_sexes = list(mongo.db.final_data.find({"type":"Dog"},{"gender":1,"_id":0}))
+
+    return jsonify(dog_sexes);
+
+@app.route("/cats-by-sex")
+def cats_by_sex():
+    cat_sexes = list(mongo.db.final_data.find({"type":"Cat"},{"gender":1,"_id":0}))
+
+    return jsonify(cat_sexes);
 
 if __name__ == '__main__':
     app.run(debug=True)
