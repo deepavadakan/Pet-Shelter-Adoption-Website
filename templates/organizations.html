@@ -4,7 +4,14 @@
 <head>
  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="project-2/static/css/style.css">
+  <link rel="stylesheet" href="static/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
+  <script src='../static/js/csv2geojson.js'></script>
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
 </head>
 
 <body>
@@ -35,6 +42,50 @@
       </ul>
     </nav>
     <!-- NAVBAR END -->
+
+    <div id='hexbin-map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuc3dpY2siLCJhIjoiY2l1dTUzcmgxMDJ0djJ0b2VhY2sxNXBiMyJ9.25Qs4HNEkHubd4_Awbd8Og';
+var map = new mapboxgl.Map({
+    container: 'hexbin-map', // container id
+    style: 'mapbox://styles/mapbox/streets-v8', //stylesheet location
+    center: [ -89.89709901792442, 41.29146740952274], // starting position
+    zoom: 3 // starting zoom
+});
+
+$(document).ready(function() {
+    $.ajax({
+        type: "GET",
+        url: '../static/data/hexbin_data.csv',
+        dataType: "text",
+        success: function(csvData) {makeGeoJSON(csvData);}
+     });
+});
+
+function makeGeoJSON(csvData) {
+    csv2geojson.csv2geojson(csvData, {
+        latfield: 'Latitude',
+        lonfield: 'Longitude',
+        delimiter: ','
+    }, function(err, data) {
+        map.on('load', function () {
+
+            map.addLayer({
+                'id': 'organization_id',
+                'type': 'symbol',
+                'source': {
+                    'type': 'geojson',
+                    'data': data
+                },
+                'layout': {
+                    "icon-image": "marker-15"
+                },
+                'paint': {}
+            });
+        });    
+    });
+}
+</script>
 
     
     <div id="footer">

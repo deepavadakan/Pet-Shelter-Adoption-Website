@@ -1,4 +1,4 @@
-
+/* --------- Main page ---------- */
 canvas {
   display: block;
   width: 100%;
@@ -36,7 +36,6 @@ canvas {
 .dashboard-circles-box {
   display: flex;
   justify-content: left;
-  
   vertical-align: middle;
   text-align: center;
 }
@@ -44,55 +43,43 @@ canvas {
 #dashboard-circle1, #dashboard-circle2, #dashboard-circle3, #dashboard-circle4 {
   height: calc(0.2 * 100vmin); /* 64px at 320 and 256px at 1280 */
   width : calc(0.2 * 100vmin); /* nice responsive sizing */
-  
-
   background-position: center;  /* center image in parent */
   background-repeat: no-repeat; /* prevents repeat of image! */
   background-size: cover;       /* stretch/shrink to fill */
-  
   border-radius: 50%;
   opacity: 0.4;
 }
 
 #dashboard-circle1 {
-  background-image: url("../images/pet1.png");
-
+  background-image: url("../images/pet3.png");
 }
-
 #dashboard-circle2 {
-  background-image: url("../images/pet2.png");
-
+  background-image: url("../images/pet1.png");
 }
 #dashboard-circle3 {
-  background-image: url("../images/pet3.png");
-
+  background-image: url("../images/pet2.png");
 }
 #dashboard-circle4 {
   background-image: url("../images/graphs.png");
 }
-
 #dashboard-circle1:hover {
   opacity: 0.8;
 }
-
 #dashboard-circle2:hover {
   opacity: 0.8;
 }
-
 #dashboard-circle3:hover {
   opacity: 0.8;
 }
-
 #dashboard-circle4:hover {
   opacity: 0.8;
 }
-
 .dashboard-circles-box a {
   text-decoration: none;
 }
 
-#dashboard-menu-item1, #dashboard-menu-item2, #dashboard-menu-item4 {
-  padding-top: 55px;
+#dashboard-menu-item1, #dashboard-menu-item2, #dashboard-menu-item3, #dashboard-menu-item4 {
+  padding-top: 50px;
   font-size: xx-large;
   color: black;
   text-decoration: none;
@@ -100,16 +87,43 @@ canvas {
   margin: 0;
 }
 
+#dashboard-menu-item1{
+  padding-top: 35px;
+  font-size: xx-large;
+}
+
 #dashboard-menu-item3 {
   padding-top: 60px;
   font-size: x-large;
-  color: black;
-  text-decoration: none;
-  opacity: 1;
+}
+/* --------- Main page ---------- */
+/* --------- Nav Bar ---------- */
+
+.navbar {
+  padding: 0px;
+  border-bottom: 5px solid rgb(0, 128, 111);
+  margin-bottom: 20px;
+}
+.navbar-brand {
+  color: white    !important; 
+  background-color: rgb(0, 128, 111);
+  color-adjust: white;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 25px;
+  font-weight: bolder;
 }
 
+.nav-link {
+  color:rgb(0, 128, 111);
+  font-size: 20px
+}
+/* --------- Nav Bar ---------- */
+
+/* --------- Breeds page ---------- */
 .sunburstBox {
-  padding-top: 50px;
+  padding-top: 13px;
 }
 
 .breeds-row {
@@ -117,29 +131,46 @@ canvas {
   padding: 10px;
 }
 
-td {
+#breedTable td {
   text-align: left;
   padding: 5px;
 }
 
-tr td:first-child{
+#breedTable tr td:first-child{
   min-width: 40%;
 }
 
 .tdHeader {
   font-weight: bold;
 }
-.breed_name {
+.breedName {
   font-size: x-large;
   margin: 0;
 }
-#scales {
+#breedScales {
   display: flex;
   justify-content: left;
-
 }
-.bar {
+.scalesBar {
   fill: orange;
   border-radius: 25px;
 }
 
+#breedLegend td{
+  padding-left: 40px;
+  text-align: left;
+}
+/* --------- Breeds page ---------- */
+
+/* --------- Find a Pet page ---------- */
+#map,
+body,
+html {
+  height: 100%;
+}
+
+.find-a-pet-row {
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+/* --------- Find a Pet page ---------- */
