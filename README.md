@@ -6,7 +6,7 @@
 * [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Setup](#setup)
-* [Features & Visulizations](#features-&-visualizations)
+* [Features & Visulizations](#features-visualizations)
 * [Status](#status)
 * [Inspiration](#inspiration)
 * [Contact](#contact)
