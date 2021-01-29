@@ -1,11 +1,13 @@
 # Coding Angels - Rescue Angels
 > Our goal for this project is to create a website that helps people find thier perfect lovable pet & actually browse current adoption listings to source where to get a desired breed of dog or cat. Or both!
 
+> See more information from our [Google Slides Presentation Here](https://docs.google.com/presentation/d/19k5C-MS9-BizZANY5uNOPcoqSFk2wY0-2bBoFTfp9O4/edit#slide=id.p)
+
 ## Table of contents
 * [General info](#general-info)
 * [Screenshots](#screenshots)
 * [Technologies](#technologies)
-* [Setup](#setup)
+* [Local Environment Setup](#Local-Environment-Setup)
 * [Features & Visulizations](#features-visualizations)
 * [Status](#status)
 * [Inspiration](#inspiration)
@@ -39,22 +41,28 @@
 ## Technologies
 * Python
 * Flask
-* Bootstrap
 * MongoDB
 * HTML/ CSS
 * Javascript
-* D3
 * JSON
-* Web APIs
+* Web APIs 
+* Gunicorn
+* Heroku
 
 ## Libraries
 * Pandas
+* Gunicorn
+* Bootstrap
+* D3
+* Numpy
+* Pymongo
+* flask_pymongo
 * Splinter
 * Selenium
 * BeautifulSoup
 * [Petpy](https://pypi.org/project/petpy/)
 
-## Setup
+## Local Environment Setup (Before Heroku Deployment)
 0) install `pip install petpy` to your environment
 1) set up a local config.py file with your PetFinder.com `API_KEY` and `API_SECRET`
 2) set up a config.js file with your `MAPBOX_API_KEY` within "static/js" folder
@@ -66,15 +74,21 @@
 `comming soon!`
 
 ## Features & Visulizations
-* USA Map of Current Adoption availabilites based on location, breed, etc. (tbd)
-* Data Visual Repository of the Different Amounts of Cat & Dog Breeds in the world
-* BONUS: Feature to help identify the possiblities of breed of your dog/ cat
+* USA Map of Current Adoption availabilites based on type of animal.
+* Data Visual sunburst graphic of the Different Amounts of Cat & Dog Breeds in the world
+   * This includes characteristics, care, traits, and other description information
+* USA Map of Current Adoption organization centers, layered with how many pets are available in that shelter
+* Static Visual graphs including:
+    * Dogs vs Cats available per state
+    * Percentage of dogs and cats available by breed
+    * Percentage of ages of available dogs and cats
+    * Percentage of genders of available dogs and cats
 
 ## Status
 Project is: _in progress_
 
 ## Inspiration
-Inspired by Rutgers Data Visulization Bootcamp & Fluffy animals everywhere!
+Inspired by Rutgers Data Visulization Bootcamp & lovey fluffy animals everywhere!
 
 ## Contact
 Created by:
