@@ -46,7 +46,6 @@ function plotSunburst(selection) {
     if (petTypeSelected === "Dogs") { //Dogs
         console.log(petTypeSelected);
         d3.json("/breeds/dogs").then(function (dogData, err) {
-            //d3.csv("../static/data/dog_breeds.csv").then(function (dogData) {
             if (err) { throw err };
             if (!dogData) {
                 console.log("I wasn't able to get data from the Web API you selected.");
@@ -134,7 +133,6 @@ function plotSunburst(selection) {
         });
     } else { //Cats
         d3.json("/breeds/cats").then(function (catData, err) {
-            // d3.csv("../static/data/cat_breeds.csv").then(function (catData) {
             if (err) { throw err };
             if (!catData) {
                 console.log("I wasn't able to get data from the Web API you selected.");
@@ -315,11 +313,16 @@ function displayDogBreedInfo(breedData, selBreed) {
         .attr("width", svgWidth);
 
     // array of dicts for scales
-    var breedScales = [{ "type": "Brushing", "scale": parseInt(selBreedData.brushing_scale.replace("%", "")) },
-    { "type": "Shedding", "scale": parseInt(selBreedData.shedding_scale.replace("%", "")) },
-    { "type": "Energy", "scale": parseInt(selBreedData.energy_scale.replace("%", "")) },
-    { "type": "Trainability", "scale": parseInt(selBreedData.trainability_scale.replace("%", "")) },
-    { "type": "Temperment", "scale": parseInt(selBreedData.temperment_scale.replace("%", "")) }];
+    var breedScales = [{ "type": "Brushing", "scale": parseInt(selBreedData.brushing_scale.replace("%", "")),
+            "text": "A high rating indicates that a dog may need regular professional grooming or frequent brushing" },
+    { "type": "Shedding", "scale": parseInt(selBreedData.shedding_scale.replace("%", "")),
+        "text": "A high rating indicates that a dog may need regular professional grooming or frequent brushing" },
+    { "type": "Energy", "scale": parseInt(selBreedData.energy_scale.replace("%", "")) ,
+        "text": "It's rare to find a low-energy puppy, and families who need a low-energy dog are advised to consider an adult or senior dog" },
+    { "type": "Trainability", "scale": parseInt(selBreedData.trainability_scale.replace("%", "")) ,
+        "text": "Some dogs combine intelligence with a high energy level and a willingness to please that, taken together, results in a dog that learns quickly" },
+    { "type": "Temperment", "scale": parseInt(selBreedData.temperment_scale.replace("%", "")) ,
+        "text": "A high rating indicates that a dog may need regular professional grooming or frequent brushing" }];
 
     var scalesGroup = svg.append("g")
         .attr("transform", `translate(${scalesMargin.left}, ${scalesMargin.top})`);
@@ -358,17 +361,13 @@ function displayDogBreedInfo(breedData, selBreed) {
 
     var toolTip = d3.tip()
         .attr("class", "tooltip")
-        .offset([80, -60])
-        // .html(function(d) {
-        //   console.log(d);
-        //   return d.type;
-        .html(function () {
-            console.log(this);
-            return "Tooltip";
+        .offset([0, 100])
+        .html(function (d) {
+            return d.text;
         });
 
     // Create tooltip in the chart
-    scalesGroup.call(toolTip);
+    barGroup.call(toolTip);
     barGroup.on('mouseover', function (d) {
         console.log("tooltip");
         toolTip.show(d, this);

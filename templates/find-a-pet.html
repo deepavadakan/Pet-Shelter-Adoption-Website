@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- Boostrap Stylesheet -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="/static/css/style.css">
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -76,7 +76,10 @@
   </div>
   <!-- The div that holds our map -->
   <div id="map"></div>
-
+  <script>
+    var petTypefromBreeds = {{ petType }};
+    var petBreedfromBreeds = {{ petBreed }};
+  </script>
   <div id="footer">
     <p>Rescue Angels&copy;2021</p>
   </div>
@@ -100,8 +103,8 @@
   <!-- D3 JavaScript -->
   <script src="https://d3js.org/d3.v6.min.js"></script>
   <!-- API key -->
-  <script type="text/javascript" src="static/js/config.js"></script>
-  <script src="static/js/find-a-pet.js"></script>
+  <script type="text/javascript" src="/static/js/config.js"></script>
+  <script src="/static/js/find-a-pet.js"></script>
 
 </body>
 

@@ -119,6 +119,7 @@ function findPetsByOption(petOption) {
   console.log(petAge);
   
   var webApiPath = "/find-a-pet/" + petTypeSelected + "/" + petBreed + "/" + petAge;
+  
   // Call function to draw markers
   drawMarkers(webApiPath);
 }
