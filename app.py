@@ -99,5 +99,19 @@ def graphs():
 
     return render_template("graphs.html")
 
+@app.route("/dogs-by-state")
+def dogs_by_state():
+    dog_states = list(mongo.db.final_data.find({"type":"Dog"},{"contact_address_state":1,"_id":0}))
+    #cat_states = list(mongo.db.final_data.find( "contact_address_state" , { "type" : "Cat"}))
+
+    return jsonify(dog_states)
+
+@app.route("/cats-by-state")
+def cats_by_state():
+    cat_states = list(mongo.db.final_data.find({"type":"Cat"},{"contact_address_state":1,"_id":0}))
+    #cat_states = list(mongo.db.final_data.find( "contact_address_state" , { "type" : "Cat"}))
+
+    return jsonify(cat_states)
+
 if __name__ == '__main__':
     app.run(debug=True)
