@@ -1,2 +1,3 @@
 var apiKey = "3Ud8hCcYPzOVjoAMQCvpuWD5cGpJ1BA60gILI6SIV8BFkPNRRD"
 var secret = "WMIebvADWcbwnEcTEFxo3ts52K5yV1M8PcA5Xs5H" 
+var MAPBOX_API_KEY = "pk.eyJ1IjoiY3ZlcmFzMzMiLCJhIjoiY2tqdTdhbXUxMGFqbzJzcGUwd25zeG9lbCJ9.JRk_mgjegVplDTvBLHhtdw"
