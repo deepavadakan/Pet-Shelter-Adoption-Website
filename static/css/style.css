@@ -174,3 +174,13 @@ html {
   padding-bottom: 10px;
 }
 /* --------- Find a Pet page ---------- */
+
+/* Organizations Page */
+
+html,
+body,
+#hexbin-map {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
