@@ -81,6 +81,11 @@ def find_a_pet(petType=None, breed=None, age=None):
         # render the find-a-pet page
         return render_template("find-a-pet.html")
 
+# route to find a pet through breeds page
+@app.route("/find-a-pet-from-breeds/<petType>/<petBreed>")
+def find_pets_from_breeds_page(petType=None, petBreed=None):
+    return render_template("find-a-pet.html", petType=petType, petBreed=petBreed)
+    
 # route to find all existing breeds for a given pet type
 @app.route("/pet-breeds-list")
 @app.route("/pet-breeds-list/<petType>")

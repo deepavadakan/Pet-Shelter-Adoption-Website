@@ -160,6 +160,17 @@ canvas {
   padding-left: 40px;
   text-align: left;
 }
+.tooltip {
+  position: absolute;
+  padding: 10px;
+  font: 12px sans-serif;
+  text-align: center;
+  color: white;
+  background: blue;
+  border: 0;
+  border-radius: 10px;
+ 
+}
 /* --------- Breeds page ---------- */
 
 /* --------- Find a Pet page ---------- */
