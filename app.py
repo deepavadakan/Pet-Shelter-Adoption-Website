@@ -141,5 +141,10 @@ def cats_by_sex():
 
     return jsonify(cat_sexes);
 
+@app.route("/angels")
+def angels():
+    # Return template and data
+    return render_template("angels.html");
+
 if __name__ == '__main__':
     app.run(debug=True)
