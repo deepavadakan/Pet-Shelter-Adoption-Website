@@ -314,15 +314,15 @@ function displayDogBreedInfo(breedData, selBreed) {
 
     // array of dicts for scales
     var breedScales = [{ "type": "Brushing", "scale": parseInt(selBreedData.brushing_scale.replace("%", "")),
-            "text": "A high rating indicates that a dog may need regular professional grooming or frequent brushing" },
+            "text": "Ranges from 'Occasional Bath/Brush' to 'Speciality/Professional'" },
     { "type": "Shedding", "scale": parseInt(selBreedData.shedding_scale.replace("%", "")),
-        "text": "A high rating indicates that a dog may need regular professional grooming or frequent brushing" },
+        "text": "Ranges from Infrequent to Frequent" },
     { "type": "Energy", "scale": parseInt(selBreedData.energy_scale.replace("%", "")) ,
-        "text": "It's rare to find a low-energy puppy, and families who need a low-energy dog are advised to consider an adult or senior dog" },
+        "text": "Ranges from 'Couch Potato' to 'Needs lots of Activity'" },
     { "type": "Trainability", "scale": parseInt(selBreedData.trainability_scale.replace("%", "")) ,
-        "text": "Some dogs combine intelligence with a high energy level and a willingness to please that, taken together, results in a dog that learns quickly" },
+        "text": "Ranges from 'May be Stubborn' to 'Eager to Please'" },
     { "type": "Temperment", "scale": parseInt(selBreedData.temperment_scale.replace("%", "")) ,
-        "text": "A high rating indicates that a dog may need regular professional grooming or frequent brushing" }];
+        "text": "Ranges from Aloof/Wary to Outgoing" }];
 
     var scalesGroup = svg.append("g")
         .attr("transform", `translate(${scalesMargin.left}, ${scalesMargin.top})`);
@@ -458,18 +458,30 @@ function displayCatBreedInfo(breedData, selBreed) {
         .attr("transform", `translate(${scalesMargin.left}, ${scalesMargin.top})`);
 
     // array of dicts for scales
-    var breedScales = [{ "type": "Playfullness", "scale": parseInt(selBreedData.playfullness) },
-    { "type": "Activity", "scale": parseInt(selBreedData.activity) },
-    { "type": "Friendliness to other pets scale", "scale": parseInt(selBreedData.friendliness_others) },
-    { "type": "Friendliness to children scale", "scale": parseInt(selBreedData.friendliness_children) },
-    { "type": "Grooming", "scale": parseInt(selBreedData.grooming) },
-    { "type": "Vocality", "scale": parseInt(selBreedData.vocality) },
-    { "type": "Attention", "scale": parseInt(selBreedData.attention) },
-    { "type": "Affection", "scale": parseInt(selBreedData.affection) },
-    { "type": "Docility", "scale": parseInt(selBreedData.docility) },
-    { "type": "Intelligence", "scale": parseInt(selBreedData.intelligence) },
-    { "type": "Independence", "scale": parseInt(selBreedData.independence) },
-    { "type": "Hardiness", "scale": parseInt(selBreedData.hardiness) }];
+    var breedScales = [{ "type": "Playfullness", "scale": parseInt(selBreedData.playfullness),
+        "text": "Breeds with higher rating need more playtime" },
+    { "type": "Activity", "scale": parseInt(selBreedData.activity),
+        "text": "Ranges from 'Relaxed/Sedentary' to 'very active'"  },
+    { "type": "Friendliness to other pets", "scale": parseInt(selBreedData.friendliness_others),
+        "text": "Indicates how well a breed may integrate into a household with existing pets"  },
+    { "type": "Friendliness to children", "scale": parseInt(selBreedData.friendliness_children),
+        "text": "Indicates how well the breed tolerates children's sometimes rambunctious activities"  },
+    { "type": "Grooming", "scale": parseInt(selBreedData.grooming),
+        "text": "High rating means more quality time spent grooming to avoid coat matting"  },
+    { "type": "Vocality", "scale": parseInt(selBreedData.vocality),
+        "text": "Ranges from 'vocalize very little' to 'running dialogue'"  },
+    { "type": "Attention", "scale": parseInt(selBreedData.attention),
+        "text": "Ranges from 'Low' to 'High'" },
+    { "type": "Affection towards its owners", "scale": parseInt(selBreedData.affection),
+        "text": "Ranges from 'Low' to 'High'" },
+    { "type": "Docility", "scale": parseInt(selBreedData.docility),
+        "text": "Ranges from 'Low' to 'High'" },
+    { "type": "Intelligence", "scale": parseInt(selBreedData.intelligence),
+        "text": "Ranges from 'Low' to 'High'" },
+    { "type": "Independence", "scale": parseInt(selBreedData.independence),
+        "text": "Ranges from 'Low' to 'High'" },
+    { "type": "Hardiness", "scale": parseInt(selBreedData.hardiness),
+        "text": "Ranges from 'Low' to 'High'" }];
 
     // draw bars
     var barGroup = scalesGroup.selectAll("rect")
@@ -502,6 +514,21 @@ function displayCatBreedInfo(breedData, selBreed) {
                 return d.type + ": " + d.scale;
             }
         });
+    
+    var toolTip = d3.tip()
+        .attr("class", "tooltip")
+        .offset([0, 100])
+        .html(function (d) {
+            return d.text;
+        });
+
+    // Create tooltip in the chart
+    barGroup.call(toolTip);
+    barGroup.on('mouseover', function (d) {
+        console.log("tooltip");
+        toolTip.show(d, this);
+    })
+        .on('mouseout', toolTip.hide);
 }
 
 // display legend for sunburst
