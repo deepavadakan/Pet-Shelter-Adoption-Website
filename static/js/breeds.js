@@ -256,7 +256,7 @@ function displayDogBreedInfo(breedData, selBreed) {
     var tr = tbody.append("tr");
     tr.append("td")
         .classed("tdHeader", true)
-        .text("Temperment: ");
+        .text("Temperament: ");
     tr.append("td").text(selBreedData.temperment);
     // rank
     var tr = tbody.append("tr");
