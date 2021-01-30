@@ -78,14 +78,14 @@ Check out our LIVE Heroku Webpage here: https://rescue-angels.herokuapp.com/
 * Re
 * Pymongo
 * Pprint 
-* config
+* Granam
 
 **JavaScript Dependencies**
 * [Leaflet JS](https://unpkg.com/leaflet@1.6.0/dist/leaflet.js)
 * [Marker Cluster JS](https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js)
 * [JQuery](https://code.jquery.com/jquery-3.5.1.slim.min.js)
 * [D3 Javascript](https://d3js.org/d3.v6.min.js)
-* [D3 Cloudfare](https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js)
+* [D3 ToolTip](https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js)
 * [Ploty](https://cdn.plot.ly/plotly-latest.min.js)
 
 **HTML CSS Dependencies**
@@ -185,13 +185,13 @@ Navigate here: https://rescue-angels.herokuapp.com/graphs
 All files are currently set up to create the Mongo DB and run locally.  If you want to run them using the cloud Mongo server, use the alternative steps provided in bullets below:  
 
 0) install ```pip install petpy``` to your environment 
- * if running cloud mongo, also ```pip install dnspython``` to your environment
+    * if running cloud mongo, also ```pip install dnspython``` to your environment
 1) add your Petfinder.com API_key and API_secret to config.py in the MongoDB_Creation folder https://github.com/deepavadakan/project-2/tree/main/MongoDB_Creation 
- * if running cloud mongo db, then comment out line 5, uncomment line 6, and add your cloud mongo database server name and password
+    * if running cloud mongo db, then comment out line 5, uncomment line 6, and add your cloud mongo database server name and password
 2) add your mapbox API key to config.js within the static/js folder, here: https://github.com/deepavadakan/project-2/tree/main/static/js 
 3) In app.py (in the main folder)
- * if running locally, leave the same
- * if running on your cloud monog database server, comment out line 17, uncomment line 18, and add your cloud mongo database server name and password 
+    * if running locally, leave the same
+    * if running on your cloud monog database server, comment out line 17, uncomment line 18, and add your cloud mongo database server name and password 
 4) Run file:AKC_Scraping/dog_breeds_mongo_db.ipynb here: https://github.com/deepavadakan/project-2/tree/main/AKC_Scraping to create the dog_breeds collection in MongoDB
 5) Run file Cat_breeds_scrape/cat_breeds_mongo_db.ipynb here: https://github.com/deepavadakan/project-2/tree/main/Cat_breeds_scrape to create the cat_breeds collection in MongoDB
 6) Run and RESTART the Kernal from file create_collections.ipynb here: https://github.com/deepavadakan/project-2/tree/main/MongoDB_Creation/ to create the final_data collection, which contains results from two petfinder API calls to the API endpoints "animals" and "organizations".
@@ -202,7 +202,7 @@ All files are currently set up to create the Mongo DB and run locally.  If you w
 
 2. API Calls can be limiting. The Petfinder API key/secret had a 3600-minute search limitation. Our initial code (before finding the Petpy wrapper) included a work-around to update the API key and secret as needed when you need to run it, and only returned the data as a json single dictionary of a list of dictionaries. The python wrapper helped solve this issue and provided more flexibility, but had its own complications. Additionally, the API default had a limit of just 1 page of 100 records. We had to do some digging into the documentation and Googling to find out how to get more records, and the ultimate limit was 100 pages with 100 records each (for 10,000 records). We did not know which records would be lost, and found out later that we were missing data for New Jersey and all of New England. **Lesson Learned**: If we had more time, we would try to find a way to manipulate the API call to get a more representative dataset from all US states.    
  
-3. Development is an iterative process. When we created our interactive map, we refined the way markers were presented on the map after the first try looked too cluttered. When we were trying to get the API call data into the Mongo DB, we frequently exceeded the rate limit. **Lesson Learned**: Have everyone in your team get an API Key/Secret. When developing, it's easy to exceed the API rate limit and the more you can share, the faster you can improve your code without having to wait between calls. 
+3. Web development is an iterative process. When we created our interactive map, we refined the way markers were presented on the map after the first try looked too cluttered. When we were trying to get the API call data into the Mongo DB, we frequently exceeded the rate limit. **Lesson Learned**: Have everyone in your team get an API Key/Secret. When developing, it's easy to exceed the API rate limit and the more you can share, the faster you can improve your code without having to wait between calls. 
 
 ## Inspiration
 Inspired by Rutgers Data Visulization Bootcamp & Fluffy animals everywhere!
