@@ -124,8 +124,8 @@ Since we would need to import the latitude and longitude separately, and merge t
 - Returned two separate API calls (animals and organizations) as dataframes
 - Addressed duplicated “organization_id” column from animal API call, which was critical, since our dataframes needed to be merged on that field:
 
-my_columns = list(range(0,48))
-animal2_df = animal2_df.iloc[:,my_columns]
+###### my_columns = list(range(0,48))
+###### animal2_df = animal2_df.iloc[:,my_columns]
 
 - Renamed columns to eliminate dot notation, since mongodb does not accept dot.notation in data fields. 
 - Renamed certain columns for key match on merging
@@ -149,7 +149,6 @@ An interactive sunburst chart allows the user to find either a dog or cat breed 
 
 ![BreedsPage](https://github.com/deepavadakan/project-2/blob/main/0_images/breeds.gif)
 
-
 ## Organizations Interactive Map
 An interactive map allows the user to view the organizations across the country where pets are adoptable, including a link to that organization's webpage, the number of pets available at that location, and the average age of their pets.  The size of each marker is related to the number of adoptable cats and/or dogs that organization has, and the color is the average age of the pets.
 We coded this in JavaScript using D3 and Leaflet; we used binning to group the number of pets for the marker size.  The data was sourced from our MongoDB "rescue_pets_db" collection "final_data". 
@@ -168,18 +167,15 @@ We coded this in JavaScript using D3 and Leaflet; we used binning to group the n
 
 ## Features & Visulizations
 ### Find a Pet
-![Title](0_images/find_pet.png)
 * Navigate here: https://rescue-angels.herokuapp.com/find-a-pet
 * USA Map of Current Adoption availabilites based on location, breed, etc. Use the dropdown menus to select dog or cat, your desired breed, and age. The map of the USA will update with locations of your desired pet, if available! 
 
 ### Explore Breeds 
-![Title](0_images/breeds_sunburst.png)
 * Navigate here: https://rescue-angels.herokuapp.com/breeds/
 * Use the dropdowns to select your pet type criteria (dog or cat), and search criteria (height, weight, or (breed) group).   
 * Select from the outer ring of the sunburst chart and a photo will popup, showing a typical example of that breed and additional information such as height, weight, color, temperament, life expentancy, and more.  
 
 ### Find an Organization
-![Title](0_images/organizations.png)
 * Navigate here: https://rescue-angels.herokuapp.com/organizations
 * Zoom in on the map to your desired location and click on a circle to see a link that organization's website, the number of adoptable pets, and the median pet age.  
 
@@ -195,6 +191,19 @@ If you want to checkout some additional information on available pets - to guide
 ![Title](https://github.com/deepavadakan/project-2/blob/main/0_images/03_breeds_piechart.png)
 #### Pets by Gender
 ![Title](https://github.com/deepavadakan/project-2/blob/main/0_images/04_gender_piechart.png)
+
+## Lessons Learned 
+1. Mongo DB is a different animal. We went through several permutations of Mongo DB creation. At first, we created different collections based on the API call endpoints, returned json objects, and exported them to the Mongo as a single collection. For each calll, this returned a dictionary of a list of dictionaries, which was difficult to navigate. With some work we were able to manipulate the call to get one level down, and get the result as a list of dictionaries, so that each dictionary represented a document in the Mongo collection.  However, we encountered other challenges.  The organizations call returned duplicate records that created an issue when trying to export to Mongo. We also initially tried to insert a latitude and a longitude field into each individual document within the organizations collection, based on a zip code (adress_postcode) correlation, but encountered several errors.  Due to these issues, we found it more efficient to import the API call results directly into Pandas as a dataframe (using the Petpy python wrapper). However, this had its own challenges - including a new error that returned a duplicate column of organization_id. This was an issue because we needed to merge on that field, which took some high-level help to address. 
+
+Lesson Learned: When you need to merge data from several different sources into a single Mongo collection, and you are under a time crunch, it might be better to go with the database structure that you are familiar with. 
+
+2. API Calls can be limiting. The Petfinder API key/secret had a 3600-minute search limitation. Our initial code (before finding the Petpy wrapper) included a work-around to update the API key and secret as needed when you need to run it, and only returned the data as a json single dictionary of a list of dictionaries. The python wrapper helped solve this issue and provided more flexibility, but had its own complications.  
+
+Additionally, the API default had a limit of just 1 page of 100 records. We had to do some digging into the documentation and Googling to find out how to get more records, and the ultimate limit was 100 pages with 100 records each (for 10,000 records). We did not know which records would be lost, and found out later that we were missing data for New Jersey and all of New England. If we had more time, we would try to find a way to manipulate the API call to get a more representative dataset from all US states.    
+ 
+3. Mapping is an iterative process. We refined the way markers were presented on the map after the first try looked too cluttered.  
+
+4. Have everyone in your team get an API Key/Secret. When developing, it's easy to exceed the API rate limit and the more you can share, the faster you can improve your code without having to wait between calls. 
 
 ## Inspiration
 Inspired by Rutgers Data Visulization Bootcamp & Fluffy animals everywhere!
