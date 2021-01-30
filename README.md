@@ -122,7 +122,7 @@ Since we would need to import the latitude and longitude separately, and merge t
 **API Calls**:
 - Returned two separate API calls (animals and organizations) as dataframes
 - Addressed duplicated “organization_id” column from animal API call, which was critical, since our dataframes needed to be merged on that field:
-```# get rid of extra organization_id column caugin an error 
+
 my_columns = list(range(0,48))
 animal2_df = animal2_df.iloc[:,my_columns]
 
