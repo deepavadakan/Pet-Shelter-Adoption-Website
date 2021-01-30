@@ -141,12 +141,19 @@ animal2_df = animal2_df.iloc[:,my_columns]
 ## Find-a-Pet Interactive Map Development
 An interactive map allows the user to view all adoptable dogs or cats across the US, filterable by breed. We coded the map in JavaScript using D3 and Leaflet. The data was called using the MAPBOX API, and map markers were populated by querying data from our MongoDB "rescue_pets_db" collection "final_data" through the flask app. 
 
+![FindAPetPage](https://github.com/deepavadakan/project-2/blob/main/0_images/findapet.gif)
+
 ## Breeds Interactive Chart Development
 An interactive sunburst chart allows the user to find either a dog or cat breed based on three different attributes (height, weight, or group), and then displays characteristics of a particular breed. We coded the  interactive chart in JavaScript, using D3 and Plotly.  The data was sourced from the AKC for dogs, and from a combined dataset for cats (Petfinder, Purina, and CFA).  
 
+![BreedsPage](https://github.com/deepavadakan/project-2/blob/main/0_images/breeds.gif)
+
+
 ## Organizations Interactive Map
 An interactive map allows the user to view the organizations across the country where pets are adoptable, including a link to that organization's webpage, the number of pets available at that location, and the average age of their pets.  The size of each marker is related to the number of adoptable cats and/or dogs that organization has, and the color is the average age of the pets.
-We coded this in JavaScript using D3 and Leaflet; we used binning to group the number of pets for the marker size.  The data was sourced from our MongoDB "rescue_pets_db" collection "final_data".  
+We coded this in JavaScript using D3 and Leaflet; we used binning to group the number of pets for the marker size.  The data was sourced from our MongoDB "rescue_pets_db" collection "final_data". 
+
+![OrganizationsMap](https://github.com/deepavadakan/project-2/blob/main/0_images/organizations.gif)
 
 ## Setup
 0) install `pip install petpy` to your environment
@@ -180,13 +187,13 @@ We coded this in JavaScript using D3 and Leaflet; we used binning to group the n
 If you want to checkout some additional information on available pets - to guide your search or just for fun - checkout our stats on available pets by state, breed, age, and gender:  
 
 #### Pets by State
-![Title](0_images/01_state_barchart.png)
+![Title](https://github.com/deepavadakan/project-2/blob/main/0_images/01_state_barchart.png)
 #### Pets by Age
-![Title](0_images/02_age_piechart.png)
+![Title](https://github.com/deepavadakan/project-2/blob/main/0_images/02_age_piechart.png)
 #### Pets by Breed (Use the Scrollbar!)
-![Title](0_images/03_breeds_piechart.png)
+![Title](https://github.com/deepavadakan/project-2/blob/main/0_images/03_breeds_piechart.png)
 #### Pets by Gender
-![Title](0_images/04_gender_piechart.png)
+![Title](https://github.com/deepavadakan/project-2/blob/main/0_images/04_gender_piechart.png)
 
 ## Inspiration
 Inspired by Rutgers Data Visulization Bootcamp & Fluffy animals everywhere!
