@@ -1,5 +1,6 @@
 # Coding Angels - Rescue Angels
 > We have created a website that helps people find their perfect lovable dog or cat & actually browse current adoption listings to source where to get a desired breed. Adopt a dog or cat - or BOTH! Check out a brief introduction to our website development, here: https://docs.google.com/presentation/d/19k5C-MS9-BizZANY5uNOPcoqSFk2wY0-2bBoFTfp9O4/edit#slide=id.p.  
+> Check out our LIVE Heroku Webpage here: https://rescue-angels.herokuapp.com/
 
 
 ## Find Your Favorite Four-legged Friend! 
@@ -168,22 +169,22 @@ We coded this in JavaScript using D3 and Leaflet; we used binning to group the n
 ## Features & Visulizations
 ### Find a Pet
 ![Title](0_images/find_pet.png)
-* Navigate here: http://127.0.0.1:5000/find-a-pet
+* Navigate here: https://rescue-angels.herokuapp.com/find-a-pet
 * USA Map of Current Adoption availabilites based on location, breed, etc. Use the dropdown menus to select dog or cat, your desired breed, and age. The map of the USA will update with locations of your desired pet, if available! 
 
 ### Explore Breeds 
 ![Title](0_images/breeds_sunburst.png)
-* Navigate here: http://127.0.0.1:5000/breeds/
+* Navigate here: https://rescue-angels.herokuapp.com/breeds/
 * Use the dropdowns to select your pet type criteria (dog or cat), and search criteria (height, weight, or (breed) group).   
 * Select from the outer ring of the sunburst chart and a photo will popup, showing a typical example of that breed and additional information such as height, weight, color, temperament, life expentancy, and more.  
 
 ### Find an Organization
 ![Title](0_images/organizations.png)
-* Navigate here: http://127.0.0.1:5000/organizations
+* Navigate here: https://rescue-angels.herokuapp.com/organizations
 * Zoom in on the map to your desired location and click on a circle to see a link that organization's website, the number of adoptable pets, and the median pet age.  
 
 ### Pet Statistics 
-* Navigate here: http://127.0.0.1:5000/graphs
+* Navigate here: https://rescue-angels.herokuapp.com/graphs
 If you want to checkout some additional information on available pets - to guide your search or just for fun - checkout our stats on available pets by state, breed, age, and gender:  
 
 #### Pets by State
