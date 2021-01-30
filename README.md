@@ -75,6 +75,7 @@
 
 ## Features & Visulizations
 * USA Map of Current Adoption availabilites based on type of animal.
+   * Note - due to PetFinder API limits, we were only able to gather 10,000 adoptable animals.
 * Data Visual sunburst graphic of the Different Amounts of Cat & Dog Breeds in the world
    * This includes characteristics, care, traits, and other description information
 * USA Map of Current Adoption organization centers, layered with how many pets are available in that shelter
