@@ -256,7 +256,7 @@ function displayDogBreedInfo(breedData, selBreed) {
     var tr = tbody.append("tr");
     tr.append("td")
         .classed("tdHeader", true)
-        .text("Temperment: ");
+        .text("Temperament: ");
     tr.append("td").text(selBreedData.temperment);
     // rank
     var tr = tbody.append("tr");
@@ -321,7 +321,7 @@ function displayDogBreedInfo(breedData, selBreed) {
         "text": "Ranges from 'Couch Potato' to 'Needs lots of Activity'" },
     { "type": "Trainability", "scale": parseInt(selBreedData.trainability_scale.replace("%", "")) ,
         "text": "Ranges from 'May be Stubborn' to 'Eager to Please'" },
-    { "type": "Temperment", "scale": parseInt(selBreedData.temperment_scale.replace("%", "")) ,
+    { "type": "Temperament", "scale": parseInt(selBreedData.temperment_scale.replace("%", "")) ,
         "text": "Ranges from Aloof/Wary to Outgoing" }];
 
     var scalesGroup = svg.append("g")
