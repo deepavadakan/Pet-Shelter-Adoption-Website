@@ -124,7 +124,7 @@ Since we would need to import the latitude and longitude separately, and merge t
 - Returned two separate API calls (animals and organizations) as dataframes
 - Addressed duplicated “organization_id” column from animal API call, which was critical, since our dataframes needed to be merged on that field:
 
-    ```my_columns = list(range(0,48))```
+    ```my_columns = list(range(0,48))```__
     ```animal2_df = animal2_df.iloc[:,my_columns]```
 
 - Renamed columns to eliminate dot notation, since mongodb does not accept dot.notation in data fields. 
