@@ -14,7 +14,7 @@ app = Flask(__name__)
 #################################################
 # setup mongo connection
 
-app.config["MONGO_URI"] = "mongodb://localhost:27017/rescue_angels_db"
+app.config["MONGO_URI"] = "mongodb+srv://dbDeepa:DeepaRutgers@cluster0.s0gp3.mongodb.net/rescue_angels_db?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 
 #################################################
