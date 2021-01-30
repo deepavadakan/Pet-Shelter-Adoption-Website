@@ -178,14 +178,14 @@ Navigate here: https://rescue-angels.herokuapp.com/graphs
 
 All files are currently set up to create the Mongo DB and run locally.  If you want to run them using the cloud Mongo server, use the alternative steps provided in bullets below:  
 
-0) install ```pip install petpy to your environment 
-* if running cloud mongo, also ```pip install dnspython to your environment
+0) install ```pip install petpy``` to your environment 
+ * if running cloud mongo, also ```pip install dnspython``` to your environment
 1) add your Petfinder.com API_key and API_secret to config.py in the MongoDB_Creation folder https://github.com/deepavadakan/project-2/tree/main/MongoDB_Creation 
-* if running cloud mongo db, then comment out line 5, uncomment line 6, and add your cloud mongo database server name and password
+ * if running cloud mongo db, then comment out line 5, uncomment line 6, and add your cloud mongo database server name and password
 2) add your mapbox API key to config.js within the static/js folder, here: https://github.com/deepavadakan/project-2/tree/main/static/js 
 3) In app.py (in the main folder)
-* if running locally, leave the same
-* if running on your cloud monog database server, comment out line 17, uncomment line 18, and add your cloud mongo database server name and password 
+ * if running locally, leave the same
+ * if running on your cloud monog database server, comment out line 17, uncomment line 18, and add your cloud mongo database server name and password 
 4) Run file:AKC_Scraping/dog_breeds_mongo_db.ipynb here: https://github.com/deepavadakan/project-2/tree/main/AKC_Scraping to create the dog_breeds collection in MongoDB
 5) Run file Cat_breeds_scrape/cat_breeds_mongo_db.ipynb here: https://github.com/deepavadakan/project-2/tree/main/Cat_breeds_scrape to create the cat_breeds collection in MongoDB
 6) Run and RESTART the Kernal from file create_collections.ipynb here: https://github.com/deepavadakan/project-2/tree/main/MongoDB_Creation/ to create the final_data collection, which contains results from two petfinder API calls to the API endpoints "animals" and "organizations".
