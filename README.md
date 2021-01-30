@@ -176,6 +176,12 @@ Navigate here: https://rescue-angels.herokuapp.com/graphs
 
 ## Setup
 
+**NOTE**: The followings files were involved in web-scraping or used to create csvs that were imported into the Mongo DB and DO NOT need to be run: 
+- hexbin_queries.ipynb 
+- AKC_Breed_Scrape.ipynb
+- All files in cat_scraping subdirectory (cat_breeds_scrape_CatFancy.ipynb, cat_breeds_scrape_petfinder.ipynb, cat_breeds_scrape_purina.ipynb) 
+
+** Setup Instructions**
 All files are currently set up to create the Mongo DB and run locally.  If you want to run them using the cloud Mongo server, use the alternative steps provided in bullets below:  
 
 0) install ```pip install petpy``` to your environment 
