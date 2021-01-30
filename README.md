@@ -10,7 +10,7 @@
 * [Data Sources](#data)
 * [Technologies](#technologies)
 * [Libraries & Dependencies](#libraries)
-* [Data Processing and Cleanup(#data-processing)
+* [Data Processing and Cleanup](#data-processing)
 * [Find-a-Pet Interactive Map Development](#find-a-pet)
 * [Breeds Interactive Chart Development](#breeds)
 * [Setup](#setup)
@@ -124,7 +124,8 @@ Since we would need to import the latitude and longitude separately, and merge t
 - Addressed duplicated “organization_id” column from animal API call, which was critical, since our dataframes needed to be merged on that field:
 ```# get rid of extra organization_id column caugin an error 
 my_columns = list(range(0,48))
-animal2_df = animal2_df.iloc[:,my_columns]```
+animal2_df = animal2_df.iloc[:,my_columns]
+
 - Renamed columns to eliminate dot notation, since mongodb does not accept dot.notation in data fields. 
 - Renamed certain columns for key match on merging
 - Converted data types for certain fields to string
