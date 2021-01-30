@@ -1,5 +1,5 @@
 # Coding Angels - Rescue Angels
-> Our goal for this project is to create a website that helps people find thier perfect lovable pet & actually browse current adoption listings to source where to get a desired breed of dog or cat. Or both!
+> Our goal for this project is to create a website that helps people find their perfect lovable pet & actually browse current adoption listings to source where to get a desired breed of dog or cat. Or both!
 
 > See more information from our [Google Slides Presentation Here](https://docs.google.com/presentation/d/19k5C-MS9-BizZANY5uNOPcoqSFk2wY0-2bBoFTfp9O4/edit#slide=id.p)
 
